@@ -64,7 +64,7 @@ function Hero({ openModal }) {
       }} />
       {/* Thin diagonal accent */}
       <div
-      className="hidden md:block"
+      className="hidden md:block" 
       style={{
         position: "absolute", top: 0, right: "35%", bottom: 0,
         width: 1, background: "linear-gradient(to bottom,transparent,color-mix(in srgb,var(--color-accent) 30%, transparent),transparent)",
