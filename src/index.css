@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg: #f8fbff;
+
+  --color-page-bg: radial-gradient(
+    circle at 85% 15%,
+    #e0f2fe 0%,
+    #f0f9ff 35%,
+    #ffffff 75%
+  );
+
+  --color-surface: rgba(255, 255, 255, 0.75);
+  --color-surface-strong: #ffffff;
+  --color-surface-alt: #f3f8ff;
+  --color-surface-muted: #eaf2ff;
+
+  --color-text: #0f172a;
+  --color-text-strong: #020617;
+  --color-text-muted: rgba(15, 23, 42, 0.72);
+  --color-text-soft: rgba(15, 23, 42, 0.55);
+  --color-text-faint: rgba(15, 23, 42, 0.35);
+
+  --color-border: rgba(59, 130, 246, 0.18);
+  --color-border-strong: rgba(37, 99, 235, 0.35);
+  --color-border-soft: rgba(59, 130, 246, 0.4);
+
+  --color-accent: #2563eb;
+  --color-accent-strong: #1d4ed8;
+  --color-accent-soft: rgba(37, 99, 235, 0.12);
+  --color-accent-glow: rgba(37, 99, 235, 0.28);
+  --color-accent-contrast: #ffffff;
+
+  --color-header-bg: rgba(255, 255, 255, 0.65);
+
+  --color-shadow: 0 25px 70px rgba(37, 99, 235, 0.15);
+}
+
+html[data-theme="dark"] {
+  --color-bg: #020617;
+
+  --color-page-bg: radial-gradient(
+    circle at 85% 10%,
+    #1e3a8a 0%,
+    #020617 45%,
+    #000000 100%
+  );
+
+  --color-surface: rgba(10, 15, 35, 0.75);
+  --color-surface-strong: #020617;
+  --color-surface-alt: #0b1023;
+  --color-surface-muted: #0f172a;
+
+  --color-text: #e6f0ff;
+  --color-text-strong: #ffffff;
+  --color-text-muted: rgba(230, 240, 255, 0.72);
+  --color-text-soft: rgba(230, 240, 255, 0.55);
+  --color-text-faint: rgba(230, 240, 255, 0.35);
+
+  --color-border: rgba(96, 165, 250, 0.22);
+  --color-border-strong: rgba(59, 130, 246, 0.45);
+  --color-border-soft: rgba(255, 255, 255, 0.3);
+
+  --color-accent: #3b82f6;
+  --color-accent-strong: #2563eb;
+  --color-accent-soft: rgba(59, 130, 246, 0.18);
+  --color-accent-glow: rgba(59, 130, 246, 0.35);
+  --color-accent-contrast: #020617;
+
+  --color-header-bg: rgba(2, 6, 23, 0.6);
+
+  --color-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-page-bg);
+  color: var(--color-text);
+  font-family: Inter, "Segoe UI", sans-serif;
+  transition: background 220ms ease, color 220ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}

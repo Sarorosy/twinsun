@@ -1,0 +1,94 @@
+#root {
+  max-width: 100%;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+body{
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+}
+
+.custom-cursor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.custom-cursor__dot,
+.custom-cursor__ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0);
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition:
+    opacity 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.custom-cursor__dot {
+  width: 9px;
+  height: 9px;
+  background: var(--color-accent-strong);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--color-accent) 12%, transparent);
+}
+
+.custom-cursor__ring {
+  width: 34px;
+  height: 34px;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 50%, var(--color-border-strong));
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 10%, transparent) 0%, transparent 70%);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-accent) 12%, transparent),
+    0 10px 30px color-mix(in srgb, var(--color-accent) 12%, transparent);
+  /* backdrop-filter: blur(4px); */
+}
+
+.custom-cursor__dot[data-interactive="true"] {
+  background: var(--color-text-strong);
+}
+
+.custom-cursor__ring[data-interactive="true"] {
+  border-color: color-mix(in srgb, var(--color-accent) 78%, white 22%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 22%, transparent) 0%, transparent 72%);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-accent) 24%, transparent),
+    0 14px 36px color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
+.custom-cursor__dot[data-pressed="true"] {
+  background: var(--color-accent);
+}
+
+.custom-cursor__ring[data-pressed="true"] {
+  border-color: color-mix(in srgb, var(--color-accent-strong) 88%, white 12%);
+}
+
+@media (pointer: fine) {
+  /* Hide the native cursor only for the custom cursor container.
+     Allow interactive elements (buttons, inputs, etc.) to show their
+     default pointer so forms and buttons retain the expected cursor. */
+  .has-custom-cursor {
+    cursor: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor__dot,
+  .custom-cursor__ring {
+    transition: opacity 120ms linear;
+  }
+}
+
