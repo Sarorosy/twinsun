@@ -1,4 +1,4 @@
-import { Zap, Facebook, Instagram, Youtube, MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
+import { Zap, Facebook, Instagram, Youtube, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
    FOOTER
 ═══════════════════════════════════════════════ */
 export default function Footer() {
-  const WA = "https://wa.me/918122652903";
+  const WA = "https://wa.me/918056078068";
   const brandGradient = "linear-gradient(135deg,var(--color-accent),var(--color-accent-strong))";
 
   const [theme, setTheme] = useState(() => {
@@ -75,7 +75,7 @@ export default function Footer() {
               </Link>
             </div>
             <p style={{ color: "var(--color-text-soft)", fontSize: 13, lineHeight: 1.8, maxWidth: 280, fontWeight: 300, marginBottom: 24 }}>
-              We build conversion-focused websites and growth systems that turn visitors into clients — trusted by businesses across Chennai.
+              We build conversion-focused websites and growth systems that turn visitors into clients — trusted by businesses worldwide.
             </p>
             <div style={{ display: "flex", gap: 8 }}>
               {[{ icon: Facebook, href: "https://www.facebook.com/share/v/1Lr5Pty1S8/" },
@@ -145,8 +145,7 @@ export default function Footer() {
           <div>
             <div style={{ color: "var(--color-text-strong)", fontSize: 12, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", marginBottom: 24 }}>Contact</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-              {[{ icon: MapPin, text: "4/34, 40th St, Sidco Nagar, Villivakkam, Chennai 600049" },
-              { icon: Phone, text: "+91 8122652903\n+91 93611 10910" },
+              {[{ icon: Phone, text: "+91 93611 87937\nWhatsApp: +91 80560 78068" },
               { icon: Mail, text: "admin@twinsundigital.com" },
               { icon: Clock, text: "Mon – Sat\n8:00 AM – 5:00 PM" },
               ].map(({ icon: Icon, text }) => (

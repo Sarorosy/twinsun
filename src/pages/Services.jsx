@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
-  ArrowRight, Search, Share2, TrendingUp, FileText, Monitor,
-  Palette, Calendar, CheckCircle, MessageCircle, Phone, Zap,
+  ArrowRight, Search, TrendingUp, FileText, Monitor,
+  Palette, CheckCircle, MessageCircle, Phone, Zap,
   Star, ChevronDown, ChevronUp,
 } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Marquee from "../components/Marquee";
+import FloatingOfferButton from "../components/FloatingOfferButton";
+import ClaimOfferSection from "../components/ClaimOfferSection";
 
-const WA = "https://wa.me/918122652903";
+const WA = "https://wa.me/918056078068";
 
 /* ── Google Fonts injected once ── */
 function useGoogleFonts() {
@@ -38,7 +40,7 @@ function Hero() {
       position: "relative",
       overflow: "hidden",
       fontFamily: "'DM Sans',sans-serif",
-      paddingTop: 100,
+      paddingTop: 30,
     }}>
       {/* BG texture grid */}
       <div style={{
@@ -92,8 +94,8 @@ function Hero() {
           color: "var(--color-text-soft)", fontSize: 17, lineHeight: 1.85,
           maxWidth: 560, fontWeight: 300, marginBottom: 0,
         }}>
-          End-to-end digital solutions designed to{" "}
-          <span style={{ color: "var(--color-accent)", fontWeight: 500 }}>grow your brand online.</span>
+          Complete website solutions designed to{" "}
+          <span style={{ color: "var(--color-accent)", fontWeight: 500 }}>build, improve, and launch your online presence.</span>
         </p>
       </div>
 
@@ -105,7 +107,7 @@ function Hero() {
 /* ═══════════════════════════════════════════════
    MARQUEE / TICKER
 ═══════════════════════════════════════════════ */
-const items = ["SEO", "Social Media", "Paid Ads", "Content", "Web Design", "Branding", "Events", "Results"];
+const items = ["Website Development", "SEO-Friendly", "Mobile-Friendly", "Website Revamp", "Custom Web Apps", "Domain", "Hosting", "Support"];
 
 
 /* ═══════════════════════════════════════════════
@@ -114,100 +116,100 @@ const items = ["SEO", "Social Media", "Paid Ads", "Content", "Web Design", "Bran
 const SERVICES = [
   {
     num: "01",
-    icon: Search,
-    label: "Search Engine Optimization",
-    short: "SEO",
-    desc: "We optimize your website to rank higher on Google and other search engines, driving organic traffic and qualified leads. Our SEO strategies include keyword research, on-page optimization, technical SEO, link building, and local SEO for Chennai businesses.",
+    icon: Monitor,
+    label: "Website Development",
+    short: "Web Build",
+    desc: "We build modern business websites that are fast, clean, and designed to convert visitors into enquiries. From company sites to landing pages, every build is tailored to your brand and business goals.",
     deliverables: [
-      "Keyword research & strategy",
-      "On-page & technical SEO audit",
-      "Content optimization",
-      "Local SEO (Google My Business)",
-      "Monthly ranking & traffic reports",
+      "Custom business website design",
+      "Multi-page website development",
+      "Landing page creation",
+      "Contact and enquiry forms",
+      "Basic on-page setup and launch support",
     ],
   },
   {
     num: "02",
-    icon: Share2,
-    label: "Social Media Marketing",
-    short: "Social Media",
-    desc: "We build and manage your brand presence across Facebook, Instagram, LinkedIn, YouTube, and more. From content creation to paid campaigns, we drive engagement, followers, and conversions.",
+    icon: Search,
+    label: "SEO-Friendly Websites",
+    short: "SEO Ready",
+    desc: "Our websites are built with SEO-friendly structure so your business has a stronger foundation for search visibility. We focus on page structure, speed, metadata, clean code, and search-friendly layouts.",
     deliverables: [
-      "Platform strategy & setup",
-      "Creative content design & copywriting",
-      "Paid social media advertising",
-      "Community management",
-      "Monthly analytics & reporting",
+      "SEO-friendly page structure",
+      "Metadata and heading setup",
+      "Image and content optimization",
+      "Speed-aware development",
+      "Technical SEO basics during build",
     ],
   },
   {
     num: "03",
-    icon: TrendingUp,
-    label: "Performance Marketing",
-    short: "Paid Ads",
-    desc: "Data-driven paid advertising campaigns on Google Ads, Meta Ads, and YouTube Ads. We maximize your ROI with targeted campaigns, A/B testing, and continuous optimization.",
+    icon: Zap,
+    label: "Mobile-Friendly Design",
+    short: "Responsive",
+    desc: "Every website we create is designed to work smoothly across mobile, tablet, laptop, and desktop. We make sure your site looks professional and stays easy to use on every screen size.",
     deliverables: [
-      "Google Search & Display Ads",
-      "Meta (Facebook & Instagram) Ads",
-      "YouTube video advertising",
-      "Retargeting & remarketing",
-      "Conversion rate optimization",
+      "Responsive layout design",
+      "Mobile-first section optimization",
+      "Cross-device UI adjustments",
+      "Touch-friendly interactions",
+      "Performance-conscious front-end build",
     ],
   },
   {
     num: "04",
-    icon: FileText,
-    label: "Content Marketing",
-    short: "Content",
-    desc: "High-quality, SEO-optimized content that builds authority and drives organic traffic. Blogs, articles, infographics, video scripts, and email newsletters that engage and convert.",
+    icon: Palette,
+    label: "Old Website Revamp",
+    short: "Revamp",
+    desc: "If your current website feels outdated, slow, or difficult to use, we can redesign and rebuild it with a fresh look, better structure, stronger performance, and improved usability.",
     deliverables: [
-      "Blog writing & management",
-      "Email marketing campaigns",
-      "Infographic & visual content",
-      "Video script writing",
-      "Brand storytelling",
+      "UI refresh and redesign",
+      "Page restructuring",
+      "Speed and usability improvements",
+      "Mobile responsiveness upgrade",
+      "Modernized business presentation",
     ],
   },
   {
     num: "05",
-    icon: Monitor,
-    label: "Website Design & Development",
-    short: "Web Design",
-    desc: "We design and develop fast, mobile-responsive, conversion-optimized websites. From landing pages to full business websites using WordPress, HTML/CSS, and modern frameworks.",
+    icon: TrendingUp,
+    label: "Custom Web Applications",
+    short: "Web Apps",
+    desc: "We develop custom web applications for businesses that need more than a standard website. From internal tools to advanced workflow systems, we create solutions around your exact requirements.",
     deliverables: [
-      "Custom website design",
-      "WordPress development",
-      "Landing page design",
-      "E-commerce setup",
-      "Website speed & SEO optimization",
+      "Requirement-based application planning",
+      "Admin panels and dashboards",
+      "Custom business workflows",
+      "Database-driven functionality",
+      "Scalable front-end and back-end setup",
     ],
   },
   {
     num: "06",
-    icon: Palette,
-    label: "Branding & Identity",
-    short: "Branding",
-    desc: "Build a powerful brand identity that resonates with your target audience. Logo design, brand guidelines, visual identity, and brand strategy tailored to your market.",
+    icon: FileText,
+    label: "Domain & Hosting Support",
+    short: "Launch Setup",
+    desc: "We help you launch with less hassle by supporting domain connection, hosting setup, deployment, and live website configuration. Eligible packages can include free domain and hosting support.",
     deliverables: [
-      "Logo design",
-      "Brand color palette & typography",
-      "Brand guidelines document",
-      "Business card & stationery design",
-      "Brand strategy consulting",
+      "Domain guidance and setup",
+      "Hosting configuration support",
+      "Website deployment",
+      "SSL and launch checks",
+      "Free domain and hosting support for eligible packages",
     ],
   },
   {
     num: "07",
-    icon: Calendar,
-    label: "Event Management",
-    short: "Events",
-    desc: "Comprehensive event planning and management for corporate events, product launches, conferences, exhibitions, and private events in Chennai and across Tamil Nadu.",
+    icon: CheckCircle,
+    label: "Website Maintenance & Support",
+    short: "Support",
+    desc: "After launch, we help keep your website stable, updated, and working properly. This includes content updates, issue fixes, and technical support when you need it.",
     deliverables: [
-      "Event concept & planning",
-      "Venue selection & logistics",
-      "Event promotion & digital marketing",
-      "On-site management",
-      "Post-event reporting",
+      "Bug fixes and issue resolution",
+      "Content and section updates",
+      "Technical maintenance support",
+      "Performance review guidance",
+      "Ongoing website assistance",
     ],
   },
 ];
@@ -221,7 +223,7 @@ function ServicesGrid() {
 
         <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 24 }}>
           <div style={{ width: 40, height: 1, background: "var(--color-accent)" }} />
-          <span style={{ color: "var(--color-accent)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", fontWeight: 600 }}>Full Service Suite</span>
+          <span style={{ color: "var(--color-accent)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", fontWeight: 600 }}>Web Service Suite</span>
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 60, flexWrap: "wrap", gap: 16 }}>
@@ -230,11 +232,11 @@ function ServicesGrid() {
             fontSize: "clamp(32px,4vw,48px)", fontWeight: 700,
             color: "var(--color-text-strong)", lineHeight: 1.15, letterSpacing: -0.5,
           }}>
-            Comprehensive Digital<br />
-            <span style={{ color: "var(--color-accent)" }}>Marketing Services</span>
+            Complete Website<br />
+            <span style={{ color: "var(--color-accent)" }}>Solutions</span>
           </h2>
           <p style={{ color: "var(--color-text-soft)", fontSize: 14, maxWidth: 320, lineHeight: 1.7, fontWeight: 300 }}>
-            Every service is tailored around your business goals, audience, and growth stage.
+            Every service is tailored around your business needs, launch goals, and long-term website growth.
           </p>
         </div>
 
@@ -368,20 +370,20 @@ function WhyUs() {
 
   const reasons = [
     {
-      num: "01", label: "Results-Driven",
-      desc: "Every campaign is tied to measurable business outcomes — leads, conversions, and revenue. No vanity metrics.",
+      num: "01", label: "Built for Business Goals",
+      desc: "We create websites and web solutions around real business needs, not generic templates that look good but fail to perform.",
     },
     {
-      num: "02", label: "90%+ Retention Rate",
-      desc: "Our clients stay because they see real growth. A retention rate above 90% is the proof we let our work do the talking.",
+      num: "02", label: "SEO and Mobile Ready",
+      desc: "Our builds are planned for search visibility and responsive performance from the start, giving your website a stronger foundation.",
     },
     {
-      num: "03", label: "Chennai-Based Experts",
-      desc: "Deep understanding of the local market, Tamil Nadu businesses, and South Indian consumer behaviour — with a global edge.",
+      num: "03", label: "Revamp to Custom Build",
+      desc: "Whether you need a fresh business website, a redesign of an old site, or a custom web application, we can handle the full scope.",
     },
     {
-      num: "04", label: "AI-Enhanced Strategies",
-      desc: "We continuously integrate the latest AI tools into our workflows to give clients a competitive edge in a fast-moving landscape.",
+      num: "04", label: "Launch Support Included",
+      desc: "We help with domain, hosting, deployment, and post-launch support so your project goes live without unnecessary friction.",
     },
   ];
 
@@ -409,10 +411,10 @@ function WhyUs() {
             color: "var(--color-text-strong)", lineHeight: 1.15, letterSpacing: -0.5,
           }}>
             Why Choose<br />
-            <span style={{ color: "var(--color-accent)" }}>The Twinsun Digital?</span>
+            <span style={{ color: "var(--color-accent)" }}>Twinsun Digital?</span>
           </h2>
           <p style={{ color: "var(--color-text-soft)", fontSize: 14, maxWidth: 320, lineHeight: 1.7, fontWeight: 300 }}>
-            Chennai's most trusted digital growth partner — combining strategy, creativity, and technology.
+            Your website partner for modern builds, stronger performance, and dependable launch support.
           </p>
         </div>
 
@@ -462,41 +464,41 @@ function Pricing() {
 
   const plans = [
     {
-      name: "Starter",
-      tagline: "For startups & small businesses",
+      name: "Starter Website",
+      tagline: "For startups and local businesses",
       highlight: false,
       features: [
-        "1 Core Service (SEO or Social Media)",
-        "Monthly performance report",
-        "WhatsApp support",
-        "Dedicated account manager",
-        "Content calendar",
+        "Business profile website",
+        "Mobile-friendly design",
+        "Contact and enquiry form",
+        "Basic SEO-friendly setup",
+        "Launch assistance",
       ],
     },
     {
-      name: "Growth",
-      tagline: "For growing businesses",
+      name: "Business Website",
+      tagline: "For growing brands and service companies",
       highlight: true,
       features: [
-        "3 Core Services",
-        "Paid Ads management",
-        "Bi-weekly performance reports",
-        "Priority support",
-        "Content creation included",
-        "A/B testing & optimization",
+        "Custom multi-page website",
+        "SEO-friendly page structure",
+        "Speed and mobile optimization",
+        "Domain and hosting support",
+        "Priority revisions",
+        "Deployment and launch setup",
       ],
     },
     {
-      name: "Enterprise",
-      tagline: "For large businesses & corporates",
+      name: "Custom Web App",
+      tagline: "For businesses with custom workflows",
       highlight: false,
       features: [
-        "Full-service digital suite",
-        "Dedicated strategy team",
-        "Weekly performance reviews",
-        "Custom AI-driven campaigns",
-        "Branding & web design included",
-        "Event management available",
+        "Requirement-based build",
+        "Dashboard or admin panel",
+        "Custom functionality and integrations",
+        "Scalable architecture",
+        "Testing and deployment support",
+        "Post-launch technical assistance",
       ],
     },
   ];
@@ -516,11 +518,11 @@ function Pricing() {
             fontSize: "clamp(32px,4vw,48px)", fontWeight: 700,
             color: "var(--color-text-strong)", lineHeight: 1.15, letterSpacing: -0.5,
           }}>
-            Flexible Plans for<br />
-            <span style={{ color: "var(--color-accent)" }}>Every Stage of Growth</span>
+            Flexible Packages for<br />
+            <span style={{ color: "var(--color-accent)" }}>Every Business Need</span>
           </h2>
           <p style={{ color: "var(--color-text-soft)", fontSize: 14, maxWidth: 320, lineHeight: 1.7, fontWeight: 300 }}>
-            Custom pricing available. Contact us for a tailored proposal.
+            Final pricing depends on scope, pages, features, and support needs. Contact us for a tailored quote.
           </p>
         </div>
 
@@ -619,7 +621,7 @@ function StatsStrip() {
     { n: "50+", l: "Projects\nCompleted" },
     { n: "30+", l: "Satisfied\nClients" },
     { n: "90%+", l: "Retention\nRate" },
-    { n: "7", l: "Services\nOffered" },
+    { n: "7", l: "Core Web\nServices" },
   ];
 
   return (
@@ -665,10 +667,10 @@ function CTA() {
         </div>
 
         <h2 style={{ fontFamily: "'Plus Jakarta Sans',serif", fontSize: "clamp(36px,5vw,64px)", fontWeight: 900, color: "var(--color-accent-contrast)", lineHeight: 1.1, marginBottom: 20, letterSpacing: -1 }}>
-          Not Sure Which Service<br />You Need?
+          Need the Right Website<br />for Your Business?
         </h2>
         <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, marginBottom: 44, fontWeight: 300 }}>
-          Talk to our experts and get a free customised digital strategy for your business.
+          Talk to us about your requirement and get the right solution for your website, revamp, or custom web application.
         </p>
         <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
           <a href={WA} target="_blank" rel="noopener noreferrer" style={{
@@ -681,15 +683,15 @@ function CTA() {
             onMouseEnter={e => e.currentTarget.style.background = "rgba(0,0,0,0.85)"}
             onMouseLeave={e => e.currentTarget.style.background = "var(--color-accent-contrast)"}
           >
-            <MessageCircle size={15} /> Free Strategy Call
+            <MessageCircle size={15} /> Free Consultation
           </a>
-          <a href="tel:+918122652903" style={{
+          <a href="tel:+919361187937" style={{
             display: "inline-flex", alignItems: "center", gap: 10,
             border: "1px solid rgba(255,255,255,0.4)", color: "var(--color-accent-contrast)",
             padding: "16px 40px", fontSize: 12, fontWeight: 600,
             letterSpacing: 2, textTransform: "uppercase", textDecoration: "none",
           }}>
-            <Phone size={14} /> +91 8122652903
+            <Phone size={14} /> +91 93611 87937
           </a>
         </div>
       </div>
@@ -703,16 +705,24 @@ function CTA() {
 ═══════════════════════════════════════════════ */
 export default function Services() {
   useGoogleFonts();
+  const offerRef = useRef(null);
 
   return (
     <div style={{ background: "transparent", minHeight: "100vh" }}>
       <Hero />
       <Marquee items={items} />
+      <ClaimOfferSection sectionRef={offerRef} />
       <ServicesGrid />
       <StatsStrip />
       <WhyUs />
       <Pricing />
       <CTA />
+      <FloatingOfferButton
+        targetRef={offerRef}
+        price="₹15,000"
+        title="Claim Offer"
+        subtitle="Website Package · One-time"
+      />
     </div>
   );
 }

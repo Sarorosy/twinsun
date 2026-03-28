@@ -10,11 +10,13 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Marquee from "../../components/Marquee";
 import FlowingMenu from "../../components/FlowingMenu";
+import FloatingOfferButton from "../../components/FloatingOfferButton";
+import ClaimOfferSection from "../../components/ClaimOfferSection";
 import Money from "./Money";
 import { CallModalContext } from "../../contexts/CallModalContext";
 import { Link } from "react-router-dom";
 
-const WA = "https://wa.me/918122652903";
+const WA = "https://wa.me/918056078068";
 
 /* ── Google Fonts injected once ── */
 function useGoogleFonts() {
@@ -37,7 +39,7 @@ function useGoogleFonts() {
 ═══════════════════════════════════════════════ */
 function Hero({ openModal }) {
   return (
-    <section style={{
+    <section className="hero" style={{
       background: "var(--color-bg)",
       color: "var(--color-text)",
       minHeight: "100vh",
@@ -50,13 +52,13 @@ function Hero({ openModal }) {
 
       
       {/* BG texture grid */}
-      <div style={{
+      <div className="hero-bg-grid" style={{
         position: "absolute", inset: 0,
         backgroundImage: "linear-gradient(color-mix(in srgb,var(--color-accent) 4%, transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--color-accent) 4%, transparent) 1px,transparent 1px)",
         backgroundSize: "80px 80px",
       }} />
       {/* Accent glow top-right */}
-      <div style={{
+      <div className="hero-accent-glow" style={{
         position: "absolute", top: -100, right: -100,
         width: 700, height: 700,
         background: "radial-gradient(circle,color-mix(in srgb,white 12%, transparent) 0%,transparent 65%)",
@@ -64,14 +66,14 @@ function Hero({ openModal }) {
       }} />
       {/* Thin diagonal accent */}
       <div
-      className="hidden md:block" 
+      className="hidden md:block hero-accent-diagonal" 
       style={{
         position: "absolute", top: 0, right: "35%", bottom: 0,
         width: 1, background: "linear-gradient(to bottom,transparent,color-mix(in srgb,var(--color-accent) 30%, transparent),transparent)",
       }} />
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "120px 40px 100px", width: "100%", position: "relative", zIndex: 2 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "60% 40%", gap: 80, alignItems: "center" }}>
+      <div className="hero-inner" style={{ maxWidth: 1280, margin: "0 auto", padding: "120px 40px 100px", width: "100%", position: "relative", zIndex: 2 }}>
+        <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "60% 40%", gap: 80, alignItems: "center" }}>
 
           {/* Left */}
           <div className="relative">
@@ -150,9 +152,9 @@ function Hero({ openModal }) {
           </div>
 
           {/* Right – stats card cluster */}
-          <div style={{ position: "relative" }}>
+          <div className="stats-wrap" style={{ position: "relative" }}>
             {/* Main card */}
-            <div style={{
+            <div className="stats-card" style={{
               background: "var(--color-surface-strong)", border: "1px solid var(--color-border)",
               padding: "40px", position: "relative",
             }}>
@@ -161,14 +163,14 @@ function Hero({ openModal }) {
               </div>
 
               {/* Stats grid */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "var(--color-accent-soft)" }}>
+              <div className="stats-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "var(--color-accent-soft)" }}>
                 {[
                   { n: "50+", l: "Projects\nCompleted", icon: Award },
                   { n: "30+", l: "Satisfied\nClients", icon: Users },
                   { n: "90%+", l: "Retention\nRate", icon: TrendingUp },
                   { n: "4+", l: "Years\nExperience", icon: Target },
                 ].map(({ n, l, icon: Icon }) => (
-                  <div key={n} style={{
+                  <div key={n} className="stats-item" style={{
                     background: "var(--color-surface-strong)", padding: "28px 24px",
                     transition: "background 0.2s",
                   }}
@@ -176,7 +178,7 @@ function Hero({ openModal }) {
                     onMouseLeave={e => e.currentTarget.style.background = "var(--color-surface-strong)"}
                   >
                     <Icon size={18} color="var(--color-accent)" style={{ marginBottom: 12, display: "block" }} />
-                    <div style={{ fontFamily: "'Plus Jakarta Sans',serif", fontSize: 38, fontWeight: 700, color: "var(--color-text-strong)", lineHeight: 1 }}>{n}</div>
+                    <div className="stats-number" style={{ fontFamily: "'Plus Jakarta Sans',serif", fontWeight: 700, color: "var(--color-text-strong)", lineHeight: 1 }}>{n}</div>
                     <div style={{ color: "var(--color-text-faint)", fontSize: 12, marginTop: 6, lineHeight: 1.5, whiteSpace: "pre-line", fontWeight: 400 }}>{l}</div>
                   </div>
                 ))}
@@ -184,7 +186,7 @@ function Hero({ openModal }) {
 
               {/* Bottom tagline */}
               <div style={{ marginTop: 28, paddingTop: 20, borderTop: "1px solid var(--color-accent-soft)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ color: "var(--color-text-faint)", fontSize: 12 }}>Trusted across Chennai & Tamil Nadu</span>
+                <span style={{ color: "var(--color-text-faint)", fontSize: 12 }}>Trusted by businesses worldwide</span>
                 <div style={{ display: "flex", gap: 0 }}>
                   {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="var(--color-accent)" color="var(--color-accent)" />)}
                 </div>
@@ -192,13 +194,12 @@ function Hero({ openModal }) {
             </div>
 
             {/* Floating badge */}
-            <div style={{
-              position: "absolute", bottom: -20, left: -20,
+            <div className="stats-badge text-center" style={{
               background: "var(--color-accent)", padding: "12px 20px",
               fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700,
               color: "var(--color-accent-contrast)", letterSpacing: 1.5, textTransform: "uppercase",
             }}>
-              🏆 Top Agency 2024
+             ⚡ Fast Delivery. Real Results.
             </div>
           </div>
         </div>
@@ -206,7 +207,12 @@ function Hero({ openModal }) {
 
       </div>
 
-      <style>{`@media(max-width:900px){section>div>div{grid-template-columns:1fr!important;gap:40px!important;}}`}</style>
+      <style>{`@media(max-width:900px){
+        .hero{overflow-x:hidden!important}
+        .hero .hero-inner{padding:80px 20px 60px!important}
+        .hero .hero-grid{grid-template-columns:1fr!important;gap:40px!important}
+        .hero-bg-grid,.hero-accent-glow,.hero-accent-diagonal{display:none!important}
+      }`}</style>
     </section>
   );
 }
@@ -257,7 +263,7 @@ function About() {
               <span style={{ color: "var(--color-accent)" }}>Real Results.</span>
             </h2>
             <p style={{ color: "var(--color-text-soft)", lineHeight: 1.9, fontSize: 15, marginBottom: 32, fontWeight: 300 }}>
-              As a leading digital marketing agency in Chennai, Twinsun Digital combines creativity with technology to deliver end-to-end solutions. Whether you are a startup or an enterprise, our services are built to engage your audience and optimize your brand's digital presence.
+              Twinsun Digital combines creativity with technology to deliver end-to-end solutions. Whether you are a startup or an enterprise, our services are built to engage your audience and optimize your brand's digital presence.
             </p>
 
             <div style={{ marginBottom: 40 }}>
@@ -306,7 +312,7 @@ function About() {
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}>
               {[
                 { n: "50+", l: "Projects" }, { n: "30+", l: "Clients" },
-                { n: "15", l: "Team Members" }, { n: "Chennai", l: "Headquarters" },
+                { n: "15", l: "Team Members" }, { n: "Est. 2020", l: "Since" },
               ].map(({ n, l }) => (
                 <div key={l} style={{ background: "var(--color-surface-strong)", border: "1px solid var(--color-border-soft)", padding: "24px 20px" }}>
                   <div style={{ fontFamily: "'Plus Jakarta Sans',serif", fontSize: 28, fontWeight: 700, color: "var(--color-text-strong)" }}>{n}</div>
@@ -794,7 +800,7 @@ function Testimonials() {
     { name: "Kanimozhi K.", text: "Helped run social media campaigns with real results. Totally recommended if you're looking to learn digital marketing.", stars: 5 },
     { name: "Kavya Mani", text: "Very professional and supportive. Strategies helped gain more visibility and engagement. Highly recommended to any business.", stars: 5 },
     { name: "Sobana S.", text: "Young and energetic digital marketing team. Creative, responsive and deliver great results. Perfect choice for any brand.", stars: 5 },
-    { name: "Ishu Mithra", text: "Best digital marketing agency in Chennai. Social media campaigns brought real results. Highly recommend their branding services.", stars: 5 },
+    { name: "Ishu Mithra", text: "Best digital marketing agency. Social media campaigns brought real results. Highly recommend their branding services.", stars: 5 },
     { name: "Keerthi S.", text: "Incredibly informative and engaging course. Clear and concise teaching style — complex topics made easy to understand.", stars: 5 },
     { name: "P Kaviya", text: "Super interactive course. SEO, social media, and Google Ads explained simply. Very useful — totally recommend.", stars: 5 },
   ];
@@ -895,13 +901,13 @@ function CTA() {
           >
             <MessageCircle size={15} /> Start Your Project
           </a>
-          <a href="tel:+918122652903" style={{
+          <a href="tel:+919361187937" style={{
             display: "inline-flex", alignItems: "center", gap: 10,
             border: "1px solid rgba(0,0,0,0.3)", color: "var(--color-accent-contrast)",
             padding: "16px 40px", fontSize: 12, fontWeight: 600,
             letterSpacing: 2, textTransform: "uppercase", textDecoration: "none",
           }}>
-            <Phone size={14} /> +91 8122652903
+            <Phone size={14} /> +91 93611 87937
           </a>
         </div>
       </div>
@@ -968,12 +974,14 @@ const websiteTypes = [
 export default function Home() {
   useGoogleFonts();
   const { open } = useContext(CallModalContext);
+  const offerRef = useRef(null);
 
   return (
     <div style={{ background: "transparent", minHeight: "100vh" }}>
 
       <Hero openModal={open} />
       <Marquee items={items} />
+      <ClaimOfferSection sectionRef={offerRef} />
       <About />
       <Services />
       <GrowthSystem />
@@ -989,6 +997,13 @@ export default function Home() {
       <Team />
       <Testimonials />
       <CTA />
+      <FloatingOfferButton
+        targetRef={offerRef}
+        price="₹15,000"
+        title="Claim Offer"
+        subtitle="Website Package · One-time"
+      />
+      
     </div>
   );
 }
@@ -1033,4 +1048,11 @@ export default function Home() {
       font-size: 14px !important;
     }
   }
+    /* Stats card mobile tweaks */
+    @media (max-width: 900px) {
+      .stats-card{padding:20px !important}
+      .stats-item{padding:16px 12px !important}
+      .stats-number{font-size:28px !important}
+      .stats-badge{position:static !important;margin-top:12px;left:auto;bottom:auto}
+    }
 `}</style>

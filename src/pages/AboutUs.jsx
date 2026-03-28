@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import {
   ArrowRight, CheckCircle, Target, Users, TrendingUp, Award,
   Lightbulb, Shield, BarChart2, Heart, MessageCircle, Phone,
@@ -7,9 +7,11 @@ import {
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Marquee from "../components/Marquee";
+import FloatingOfferButton from "../components/FloatingOfferButton";
+import ClaimOfferSection from "../components/ClaimOfferSection";
 import { CallModalContext } from "../contexts/CallModalContext";
 
-const WA = "https://wa.me/918122652903";
+const WA = "https://wa.me/918056078068";
 
 /* ── Google Fonts injected once ── */
 function useGoogleFonts() {
@@ -39,7 +41,7 @@ function Hero() {
       position: "relative",
       overflow: "hidden",
       fontFamily: "'DM Sans',sans-serif",
-      paddingTop: 100,
+      paddingTop: 30,
     }}>
       {/* BG texture grid */}
       <div style={{
@@ -105,7 +107,7 @@ function Hero() {
 /* ═══════════════════════════════════════════════
    MARQUEE / TICKER
 ═══════════════════════════════════════════════ */
-const items = ["Innovation", "Integrity", "Impact", "Inclusivity", "Chennai", "Growth", "Strategy", "Results"];
+const items = ["Innovation", "Integrity", "Impact", "Inclusivity", "Excellence", "Growth", "Strategy", "Results"];
 
 
 /* ═══════════════════════════════════════════════
@@ -129,12 +131,12 @@ function OurStory() {
               fontSize: "clamp(34px,4vw,50px)", fontWeight: 700,
               color: "var(--color-text-strong)", lineHeight: 1.15, marginBottom: 28, letterSpacing: -0.5,
             }}>
-              Born in Chennai.<br />
-              <span style={{ color: "var(--color-accent)" }}>Built for Results.</span>
+              Built with Passion.<br />
+              <span style={{ color: "var(--color-accent)" }}>Driven by Results.</span>
             </h2>
 
             <p style={{ color: "var(--color-text-soft)", lineHeight: 1.9, fontSize: 15, marginBottom: 28, fontWeight: 300 }}>
-              Founded in Chennai, The Twinsun Digital was born from a simple belief — that every business, big or small, deserves powerful digital marketing that drives real results. Starting with a small but dedicated team, we have grown to serve 30+ satisfied clients across industries, completing 50+ projects with measurable impact.
+              The Twinsun Digital was born from a simple belief — that every business, big or small, deserves powerful digital marketing that drives real results. Starting with a small but dedicated team, we have grown to serve 30+ satisfied clients across industries, completing 50+ projects with measurable impact.
             </p>
 
             <p style={{ color: "var(--color-text-soft)", lineHeight: 1.9, fontSize: 15, marginBottom: 36, fontWeight: 300 }}>
@@ -192,7 +194,7 @@ function OurStory() {
                 ))}
               </div>
               <div style={{ marginTop: 28, paddingTop: 20, borderTop: "1px solid var(--color-accent-soft)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ color: "var(--color-text-faint)", fontSize: 12 }}>Trusted across Chennai & Tamil Nadu</span>
+                <span style={{ color: "var(--color-text-faint)", fontSize: 12 }}>Trusted by businesses worldwide</span>
                 <div style={{ display: "flex", gap: 0 }}>
                   {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="var(--color-accent)" color="var(--color-accent)" />)}
                 </div>
@@ -206,7 +208,7 @@ function OurStory() {
             }}>
               <Zap size={16} color="var(--color-accent-contrast)" />
               <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "var(--color-accent-contrast)", letterSpacing: 1.5, textTransform: "uppercase" }}>
-                15-member team · Est. 2020 in Chennai
+                15-member team · Est. 2020
               </span>
             </div>
           </div>
@@ -381,11 +383,12 @@ function CoreValues() {
 ═══════════════════════════════════════════════ */
 function Milestones() {
   const timeline = [
-    { year: "2020", title: "Founded", desc: "The Twinsun digital established in Chennai with a small, passionate team and a big vision." },
+    { year: "2020", title: "Founded", desc: "The Twinsun digital was established with a small, passionate team and a big vision." },
     { year: "2021", title: "First 10 Clients", desc: "Surpassed the first 10 satisfied clients milestone, proving our model works." },
-    { year: "2022", title: "Academy Launched", desc: "Digital Marketing Academy launched — empowering students and professionals." },
-    { year: "2023", title: "Event Management", desc: "Added Event Management as a third business vertical, expanding our service offering." },
+    { year: "2022", title: "Website Services Expansion", desc: "Expanded into complete website services including SEO-friendly and mobile-friendly website development." },
+    { year: "2023", title: "Revamp & Custom Apps", desc: "Started delivering old website revamps and custom web application solutions for growing businesses." },
     { year: "2025", title: "50+ Projects", desc: "Grew to a 15-member team serving 30+ clients with 90%+ retention rate." },
+    { year: "2026", title: "Complete Web Solutions", desc: "Now focused on end-to-end web solutions: website development, revamps, custom apps, and domain plus hosting support." },
   ];
 
   return (
@@ -482,7 +485,7 @@ function FounderSpotlight() {
                 Saravanan
               </h3>
               <div style={{ color: "var(--color-accent)", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", fontWeight: 600, marginBottom: 24 }}>
-                Founder & Digital Strategist
+                Founder & Web Solutions Strategist
               </div>
 
               <div style={{ display: "flex", justifyContent: "center", gap: 0, marginBottom: 28 }}>
@@ -512,16 +515,16 @@ function FounderSpotlight() {
             </h2>
 
             <p style={{ color: "var(--color-text-soft)", lineHeight: 1.9, fontSize: 15, marginBottom: 24, fontWeight: 300 }}>
-              Saravanan holds a Bachelor's degree in Electronics & Communication Engineering from Vel Tech Technical University. With over 5 years of extensive experience in digital marketing, he combines analytical precision with creative storytelling to excel in the digital space.
+              Saravanan holds a Bachelor's degree in Electronics & Communication Engineering from Vel Tech Technical University. With over 5 years of experience in website development and digital solutions, he combines technical precision with practical business thinking to build high-performing websites for modern brands.
             </p>
 
             <p style={{ color: "var(--color-text-soft)", lineHeight: 1.9, fontSize: 15, marginBottom: 36, fontWeight: 300 }}>
-              Rajendra specialises in developing data-driven advertising strategies, interpreting performance metrics, and optimising customer journeys that deliver genuine growth and long-term engagement. Committed to innovation, he continuously leverages the latest tools — including AI-driven solutions — to ensure clients stay ahead.
+              Saravanan specialises in SEO-friendly websites, mobile-friendly design, old website revamps, custom web applications, and complete website setup with domain and hosting support. His focus is on delivering reliable, scalable, and conversion-ready web solutions that help businesses grow online.
             </p>
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40 }}>
               {[
-                "Data-Driven Advertising", "Performance Metrics", "AI-Driven Solutions", "Customer Journey Optimisation",
+                "Website Development", "SEO-Friendly Websites", "Custom Web Applications", "Website Revamp & Hosting Support",
               ].map(skill => (
                 <div key={skill} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
                   <div style={{ width: 18, height: 18, background: "var(--color-accent-soft)", border: "1px solid var(--color-accent)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: 2 }}>
@@ -542,7 +545,7 @@ function FounderSpotlight() {
               onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
               onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
             >
-              Connect With Rajendra <ArrowRight size={14} />
+              Connect With Saravanan <ArrowRight size={14} />
             </button>
           </div>
         </div>
@@ -592,13 +595,13 @@ function CTA() {
           >
             <MessageCircle size={15} /> Free Consultation
           </button>
-          <a href="tel:+918122652903" style={{
+          <a href="tel:+919361187937" style={{
             display: "inline-flex", alignItems: "center", gap: 10,
             border: "1px solid rgba(255,255,255,0.4)", color: "var(--color-accent-contrast)",
             padding: "16px 40px", fontSize: 12, fontWeight: 600,
             letterSpacing: 2, textTransform: "uppercase", textDecoration: "none",
           }}>
-            <Phone size={14} /> +91 8122652903
+            <Phone size={14} /> +91 93611 87937
           </a>
         </div>
       </div>
@@ -614,17 +617,25 @@ function CTA() {
 export default function AboutUs() {
   useGoogleFonts();
   const { open } = useContext(CallModalContext);
+  const offerRef = useRef(null);
 
   return (
     <div style={{ background: "transparent", minHeight: "100vh" }}>
       <Hero />
       <Marquee items={items} />
+      <ClaimOfferSection sectionRef={offerRef} />
       <OurStory />
       <MissionVision />
       <CoreValues />
       <Milestones />
       <FounderSpotlight />
       <CTA />
+      <FloatingOfferButton
+        targetRef={offerRef}
+        price="₹15,000"
+        title="Claim Offer"
+        subtitle="Website Package · One-time"
+      />
     </div>
   );
 }

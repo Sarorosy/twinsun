@@ -24,7 +24,7 @@ Satisfied Clients	30+
 Team Members	15
 Client Retention Rate	90%+
 Years in Business	4+
-Phone Numbers	+91 8122652903 / +91 93611 10910
+Phone Numbers	+91 9361187937 / +91 8056078068
 
 1.3 Identified Strengths
 •	Clear value proposition: results-driven digital marketing
@@ -327,11 +327,11 @@ Sub-headline: Ready to grow your business? Let's talk.
 Contact Details
 Detail	Value
 Office Address	4/34, 40th St, D type, Sidco Nagar, Villivakkam, Chennai, Tamil Nadu 600049
-Phone 1	+91 8122652903
-Phone 2	+91 93611 10910
+Phone 1	+91 9361187937
+Phone 2	+91 8056078068
 Email	admin@thestratedgee.com
 Working Hours	Monday – Saturday, 8:00 AM – 5:00 PM
-WhatsApp	Click to Chat: +91 8122652903
+WhatsApp	Click to Chat: +91 8056078068
 Contact Form Fields
 •	Name (required)
 •	Phone (required)
@@ -441,7 +441,7 @@ Title: Digital Marketing Course in Chennai | Stratedgee Academy
 Meta Desc: Join Stratedgee's digital marketing academy. Expert-led courses with hands-on training, real projects, and industry certification. Enroll today.
 Contact
 Title: Contact The Stratedgee | Digital Marketing Agency Chennai
-Meta Desc: Get in touch with The Stratedgee team. Call +91 8122652903 or WhatsApp us for a free digital marketing consultation.
+Meta Desc: Get in touch with The Stratedgee team. Call +91 9361187937 or WhatsApp us for a free digital marketing consultation.
 5.3 Technical SEO Checklist
 •	Add XML sitemap at /sitemap.xml
 •	Implement robots.txt correctly (currently blocks subpages from crawlers)

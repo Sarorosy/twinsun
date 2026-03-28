@@ -13,7 +13,7 @@ export default function Money() {
     let timeout;
 
     let activeEmojis = 0; // Track the number of active emojis
-    const MAX_EMOJIS = 3; // Limit to 2-3 emojis at a time
+    const MAX_EMOJIS = 6; // Limit to 2-3 emojis at a time
 
     function spawnOne() {
       if (!canvas || !stage || activeEmojis >= MAX_EMOJIS) return; // Respect the limit
@@ -72,7 +72,7 @@ export default function Money() {
 
     function scheduleNext() {
       spawnOne();
-      const delay = 2000 + Math.random() * 1.5; // Reduced delay for faster spawning
+      const delay = 2000 + Math.random() * 0.5; // Reduced delay for faster spawning
       timeout = setTimeout(scheduleNext, delay);
     }
 

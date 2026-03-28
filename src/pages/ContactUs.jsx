@@ -1,13 +1,14 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
-  ArrowRight, Phone, Mail, MapPin, Clock,
+  ArrowRight, Phone, Mail, Clock,
   MessageCircle, Send, Facebook, Instagram, Youtube,
   ChevronDown, ChevronUp, CheckCircle
 } from "lucide-react";
 import Marquee from "../components/Marquee";
-import { CallModalContext } from "../contexts/CallModalContext";
+import FloatingOfferButton from "../components/FloatingOfferButton";
+import ClaimOfferSection from "../components/ClaimOfferSection";
 
-const WA = "https://wa.me/918122652903";
+const WA = "https://wa.me/918056078068";
 
 /* ── Google Fonts injected once ── */
 function useGoogleFonts() {
@@ -56,7 +57,7 @@ function Hero() {
         width: 1, background: "linear-gradient(to bottom,transparent,rgba(139,92,246,0.3),transparent)",
       }} />
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "140px 40px 80px", width: "100%", position: "relative", zIndex: 2 }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "100px 40px 80px", width: "100%", position: "relative", zIndex: 2 }}>
         <div style={{
           display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 32,
           border: "1px solid var(--color-border)", padding: "8px 18px",
@@ -100,8 +101,7 @@ function ContactSection() {
   const [sent, setSent] = useState(false);
 
   const info = [
-    { icon: MapPin, label: "Office Address", val: "4/34, 40th St, D type, Sidco Nagar, Villivakkam, Chennai, Tamil Nadu 600049" },
-    { icon: Phone, label: "Phone", val: "+91 8122652903 / +91 93611 10910" },
+    { icon: Phone, label: "Phone", val: "+91 93611 87937" },
     { icon: Mail, label: "Email", val: "admin@twinsundigital.com" },
     { icon: Clock, label: "Working Hours", val: "Monday – Saturday, 8:00 AM – 5:00 PM" },
   ];
@@ -118,7 +118,7 @@ function ContactSection() {
   };
 
   return (
-    <section style={{ background: "var(--color-surface-alt)", padding: "110px 0", fontFamily: "'DM Sans',sans-serif" }}>
+    <section style={{ background: "var(--color-surface-alt)", padding: "30px 0", fontFamily: "'DM Sans',sans-serif" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
 
         <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 70 }}>
@@ -225,11 +225,11 @@ function ContactSection() {
               fontSize: "clamp(32px,4vw,48px)", fontWeight: 700,
               color: "var(--color-text-strong)", lineHeight: 1.15, marginBottom: 16, letterSpacing: -0.5,
             }}>
-              Our Office.<br />
-              <span style={{ color: "var(--color-accent)" }}>Find Us.</span>
+              Reach Out.<br />
+              <span style={{ color: "var(--color-accent)" }}>Connect.</span>
             </h2>
             <p style={{ color: "var(--color-text-soft)", fontSize: 15, lineHeight: 1.85, fontWeight: 300, marginBottom: 40 }}>
-              We're based in Chennai — visit us, call us, or drop a message on WhatsApp.
+              Call, email, or drop a message on WhatsApp — I'll get back to you promptly.
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 3, marginBottom: 32 }}>
@@ -266,7 +266,7 @@ function ContactSection() {
               <MessageCircle size={20} fill="currentColor" />
               <div>
                 <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>Chat on WhatsApp</div>
-                <div style={{ fontSize: 12, opacity: 0.8, marginTop: 2 }}>+91 8122652903 — Instant Reply</div>
+                <div style={{ fontSize: 12, opacity: 0.8, marginTop: 2 }}>+91 80560 78068 — Instant Reply</div>
               </div>
               <ArrowRight size={16} style={{ marginLeft: "auto" }} />
             </a>
@@ -296,38 +296,7 @@ function ContactSection() {
   );
 }
 
-/* ═══════════════════════════════════════════════
-   MAP SECTION
-═══════════════════════════════════════════════ */
-function MapSection() {
-  return (
-    <section style={{ background: "var(--color-bg)", padding: "0", fontFamily: "'DM Sans',sans-serif" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px 110px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 40, paddingTop: 80 }}>
-          <div style={{ width: 40, height: 1, background: "var(--color-accent)" }} />
-          <span style={{ color: "var(--color-accent)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", fontWeight: 600 }}>Find Us on the Map</span>
-        </div>
-        <div style={{
-          border: "1px solid var(--color-border)",
-          overflow: "hidden",
-          position: "relative",
-        }}>
-          <iframe
-            title="Twinsundigital Office Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.8852114600927!2d80.20390259999999!3d13.106457700000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ccde6adeb1%3A0x609149a0a0ad0765!2sThe%20Stratedge%20Digital%20Marketing%20%26%20Event%20Management%20Agency!5e0!3m2!1sen!2sin!4v1774529653599!5m2!1sen!2sin"
-            width="100%"
-            height="420"
-            style={{ border: 0, display: "block", filter: "grayscale(30%)" }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-          
-        </div>
-      </div>
-    </section>
-  );
-}
+
 
 /* ═══════════════════════════════════════════════
    FAQ
@@ -335,10 +304,10 @@ function MapSection() {
 function FAQ() {
   const [openIdx, setOpenIdx] = useState(null);
   const faqs = [
-    { q: "What services do you offer?", a: "We offer SEO, social media marketing, paid ads, content marketing, web design, branding, event management, and digital marketing training." },
-    { q: "Do you work with startups?", a: "Yes! We have tailored packages for startups, SMEs, and enterprises of all sizes. Our strategies are built to scale with your business." },
-    { q: "How do I enroll in the digital marketing course?", a: "Contact us via WhatsApp or the contact form and our team will guide you through the enrollment process — including format selection and schedule." },
-    { q: "Do you provide reports and analytics?", a: "Yes. Monthly performance reports are included in all our service packages so you always know exactly how your campaigns are performing." },
+    { q: "What services do you offer?", a: "We provide website development, SEO-friendly websites, mobile-friendly design, old website revamp, and custom web applications." },
+    { q: "Do you work with startups and small businesses?", a: "Yes. We work with startups, SMEs, and growing brands, and we build solutions that can scale as your business grows." },
+    { q: "Do you provide domain and hosting?", a: "Yes. We include free domain and hosting support with eligible website packages. Contact us for package details." },
+    { q: "Can you redesign or revamp my existing website?", a: "Absolutely. We revamp outdated websites with modern UI, better performance, mobile responsiveness, and SEO-ready structure." },
   ];
 
   return (
@@ -434,7 +403,7 @@ function CTA() {
           Ready to Transform<br />Your Digital Game?
         </h2>
         <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, marginBottom: 44, fontWeight: 300 }}>
-          Partner with the leading Digital Marketing Agency in Chennai.
+          Partner with a results-driven Digital Marketing Agency.
         </p>
         <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
           <button type="button" onClick={open} style={{
@@ -449,13 +418,13 @@ function CTA() {
           >
             <MessageCircle size={15} /> Free Consultation
           </button>
-          <a href="tel:+918122652903" style={{
+          <a href="tel:+919361187937" style={{
             display: "inline-flex", alignItems: "center", gap: 10,
             border: "1px solid rgba(255,255,255,0.4)", color: "var(--color-accent-contrast)",
             padding: "16px 40px", fontSize: 12, fontWeight: 600,
             letterSpacing: 2, textTransform: "uppercase", textDecoration: "none",
           }}>
-            <Phone size={14} /> +91 8122652903
+            <Phone size={14} /> +91 93611 87937
           </a>
         </div>
       </div>
@@ -468,15 +437,22 @@ function CTA() {
 ═══════════════════════════════════════════════ */
 export default function ContactUs() {
   useGoogleFonts();
+  const offerRef = useRef(null);
 
   return (
     <div style={{ background: "transparent", minHeight: "100vh" }}>
       <Hero />
       <Marquee items={items} />
       <ContactSection />
-      <MapSection />
+      <ClaimOfferSection sectionRef={offerRef} />
       <FAQ />
       <CTA />
+      <FloatingOfferButton
+        targetRef={offerRef}
+        price="₹15,000"
+        title="Claim Offer"
+        subtitle="Website Package · One-time"
+      />
     </div>
   );
 }

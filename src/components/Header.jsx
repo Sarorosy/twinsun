@@ -26,7 +26,7 @@ export default function Header() {
 
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   });
-  const WA = "https://wa.me/918122652903";
+  const WA = "https://wa.me/918056078068";
 
   const { open: openCall } = useContext(CallModalContext);
 
@@ -241,7 +241,7 @@ export default function Header() {
                 {/* Social + Contact */}
                 <div style={{ fontSize: 13, color: "var(--color-text-muted)" }}>
                   <p style={{ marginBottom: 6 }}>📧 your@email.com</p>
-                  <p style={{ marginBottom: 6 }}>📱 +91 81226 52903</p>
+                  <p style={{ marginBottom: 6 }}>📱 +91 93611 87937</p>
 
                   <div style={{ display: "flex", gap: 12, marginTop: 10 }}>
                     <a href="#" style={{ textDecoration: "none" }}>Instagram</a>
