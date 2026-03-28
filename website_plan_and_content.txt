@@ -329,7 +329,7 @@ Detail	Value
 Office Address	4/34, 40th St, D type, Sidco Nagar, Villivakkam, Chennai, Tamil Nadu 600049
 Phone 1	+91 9361187937
 Phone 2	+91 8056078068
-Email	admin@thestratedgee.com
+Email	info@thestratedgee.com
 Working Hours	Monday – Saturday, 8:00 AM – 5:00 PM
 WhatsApp	Click to Chat: +91 8056078068
 Contact Form Fields
@@ -337,7 +337,7 @@ Contact Form Fields
 •	Phone (required)
 •	Email (required)
 •	Message / Service of Interest (required)
-•	Submit button → sends to admin@thestratedgee.com
+•	Submit button → sends to info@thestratedgee.com
 Social Media Links
 Platform	URL
 Facebook	https://www.facebook.com/share/v/1Lr5Pty1S8/
@@ -386,7 +386,7 @@ Exists on the current site. Should include:
 •	Use of cookies and analytics (Google Analytics)
 •	Third-party sharing policy
 •	User rights under data protection
-•	Contact for data inquiries: admin@thestratedgee.com
+•	Contact for data inquiries: info@thestratedgee.com
 
 PAGE 8: TERMS & CONDITIONS  (/terms-conditions/)
 

@@ -20,6 +20,7 @@ export default function Money() {
 
       const el = document.createElement("img"); // Use img element instead of div
       el.className = "floating-emoji";
+      el.alt = "money emoji"; // Add alt text for accessibility
       el.src = `/emojis/${EMOJIS[Math.floor(Math.random() * EMOJIS.length)]}`; // Set image source
 
       const stageW = stage.offsetWidth;

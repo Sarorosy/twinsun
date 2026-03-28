@@ -10,6 +10,7 @@ import Marquee from "../components/Marquee";
 import FloatingOfferButton from "../components/FloatingOfferButton";
 import ClaimOfferSection from "../components/ClaimOfferSection";
 import { CallModalContext } from "../contexts/CallModalContext";
+import { Helmet } from "react-helmet";
 
 const WA = "https://wa.me/918056078068";
 
@@ -442,9 +443,6 @@ function Milestones() {
   );
 }
 
-
-
-
 /* ═══════════════════════════════════════════════
    FOUNDER SPOTLIGHT
 ═══════════════════════════════════════════════ */
@@ -603,8 +601,6 @@ function CTA({ onOpenCall }) {
   );
 }
 
-
-
 /* ═══════════════════════════════════════════════
    PAGE
 ═══════════════════════════════════════════════ */
@@ -614,108 +610,14 @@ export default function AboutUs() {
   const offerRef = useRef(null);
 
   return (
-    <div style={{ background: "transparent", minHeight: "100vh" }}>
-      <style>{`
-        @media (max-width: 900px) {
-          .about-container {
-            padding-left: 24px !important;
-            padding-right: 24px !important;
-          }
-
-          .about-story-grid,
-          .mv-grid,
-          .founder-grid {
-            grid-template-columns: 1fr !important;
-            gap: 48px !important;
-          }
-
-          .values-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-
-          .milestones-timeline .timeline-spine {
-            left: 28px !important;
-          }
-
-          .milestones-timeline .timeline-row {
-            grid-template-columns: 1fr !important;
-            gap: 14px !important;
-            padding: 28px 20px 28px 56px !important;
-            position: relative;
-          }
-
-          .milestones-timeline .timeline-year,
-          .milestones-timeline .timeline-content {
-            text-align: left !important;
-            padding-right: 0 !important;
-          }
-
-          .milestones-timeline .timeline-node-wrap {
-            position: absolute !important;
-            left: 22px !important;
-            top: 34px !important;
-            justify-content: flex-start !important;
-          }
-
-          .founder-skills-grid {
-            grid-template-columns: 1fr 1fr !important;
-          }
-        }
-
-        @media (max-width: 600px) {
-          .about-container,
-          .about-hero-inner,
-          .about-cta-shell {
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-          }
-
-          .about-hero {
-            min-height: auto !important;
-          }
-
-          .about-breadcrumb {
-            flex-wrap: wrap;
-            row-gap: 6px;
-          }
-
-          .about-hero-title {
-            font-size: clamp(32px, 8vw, 52px) !important;
-          }
-
-          #about-story,
-          .mv-grid,
-          .values-grid,
-          .founder-grid,
-          .about-cta-shell {
-            width: 100%;
-          }
-
-          .about-story-stats-grid,
-          .founder-skills-grid,
-          .values-grid {
-            grid-template-columns: 1fr !important;
-          }
-
-          .about-story-trust-row {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            gap: 12px !important;
-          }
-
-          .about-cta-actions {
-            flex-direction: column !important;
-            align-items: stretch !important;
-          }
-
-          .about-cta-actions > * {
-            justify-content: center !important;
-            width: 100% !important;
-            padding-left: 20px !important;
-            padding-right: 20px !important;
-          }
-        }
-      `}</style>
+    <div>
+      <Helmet>
+        <title>About Us - Twinsun Digital</title>
+        <meta
+          name="description"
+          content="Learn more about Twinsun Digital, our mission, and how we help businesses succeed online with tailored web solutions."
+        />
+      </Helmet>
       <Hero />
       <Marquee items={items} />
       <ClaimOfferSection sectionRef={offerRef} />

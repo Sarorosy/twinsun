@@ -7,6 +7,7 @@ import {
 import Marquee from "../components/Marquee";
 import FloatingOfferButton from "../components/FloatingOfferButton";
 import ClaimOfferSection from "../components/ClaimOfferSection";
+import { Helmet } from "react-helmet";
 
 const WA = "https://wa.me/918056078068";
 
@@ -102,14 +103,14 @@ function ContactSection() {
 
   const info = [
     { icon: Phone, label: "Phone", val: "+91 93611 87937" },
-    { icon: Mail, label: "Email", val: "admin@twinsundigital.com" },
+    { icon: Mail, label: "Email", val: "info@twinsundigital.com" },
     { icon: Clock, label: "Working Hours", val: "Monday – Saturday, 8:00 AM – 5:00 PM" },
   ];
 
   const socials = [
-    { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/share/v/1Lr5Pty1S8/" },
-    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/the_stratedge/" },
-    { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/channel/UCCtbaoyWA3y9GB2WFcYDXEQ" },
+    { icon: Facebook, label: "Facebook", href: "#" },
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/twinsundigital/" },
+    { icon: Youtube, label: "YouTube", href: "#" },
   ];
 
   const handleSubmit = (e) => {
@@ -262,6 +263,7 @@ function ContactSection() {
             }}
               onMouseEnter={e => e.currentTarget.style.transform = "translateY(-2px)"}
               onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}
+              aria-label="Chat with us on WhatsApp"
             >
               <MessageCircle size={20} fill="currentColor" />
               <div>
@@ -282,12 +284,24 @@ function ContactSection() {
                 }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--color-accent)"; e.currentTarget.style.color = "var(--color-accent)"; }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--color-border-soft)"; e.currentTarget.style.color = "var(--color-text-soft)"; }}
-                  aria-label={label}
+                  aria-label={`Follow us on ${label}`}
                 >
                   <Icon size={18} />
                 </a>
               ))}
             </div>
+
+            {/* Phone Link */}
+            <a href="tel:+919361187937" style={{
+              display: "inline-flex", alignItems: "center", gap: 10,
+              border: "1px solid rgba(255,255,255,0.4)", color: "var(--color-accent-contrast)",
+              padding: "16px 40px", fontSize: 12, fontWeight: 600,
+              letterSpacing: 2, textTransform: "uppercase", textDecoration: "none",
+            }}
+              aria-label="Call us at +91 93611 87937"
+            >
+              <Phone size={14} /> +91 93611 87937
+            </a>
           </div>
         </div>
       </div>
@@ -295,8 +309,6 @@ function ContactSection() {
     </section>
   );
 }
-
-
 
 /* ═══════════════════════════════════════════════
    FAQ
@@ -440,7 +452,14 @@ export default function ContactUs() {
   const offerRef = useRef(null);
 
   return (
-    <div style={{ background: "transparent", minHeight: "100vh" }}>
+    <div>
+      <Helmet>
+        <title>Contact Us - Twinsun Digital</title>
+        <meta
+          name="description"
+          content="Get in touch with Twinsun Digital for inquiries, support, or to discuss your next web project. We're here to help!"
+        />
+      </Helmet>
       <Hero />
       <Marquee items={items} />
       <ContactSection />

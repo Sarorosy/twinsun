@@ -46,7 +46,7 @@ export default function Footer() {
       onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.1)"; e.currentTarget.style.boxShadow = "var(--color-shadow)"; }}
       onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "var(--color-shadow)"; }}
     >
-      <img src="/whatsapp.svg"  />
+      <img src="/whatsapp.svg" alt="WhatsApp"  />
     </a>
   );
 }
@@ -70,6 +70,7 @@ export default function Footer() {
             <img
               src={theme === "light" ? "/logo-black.svg" : "/logo-white.svg"}
               className="h-7"
+              alt="Twinsun Digital Logo"
             />
             <span style={{
               fontSize: 9,
@@ -89,11 +90,13 @@ export default function Footer() {
               We build conversion-focused websites and growth systems that turn visitors into clients — trusted by businesses worldwide.
             </p>
             <div style={{ display: "flex", gap: 8 }}>
-              {[{ icon: Facebook, href: "https://www.facebook.com/share/v/1Lr5Pty1S8/" },
-              { icon: Instagram, href: "https://www.instagram.com/the_stratedge/" },
-              { icon: Youtube, href: "https://www.youtube.com/channel/UCCtbaoyWA3y9GB2WFcYDXEQ" },
+              {[{ icon: Facebook, href: "#" },
+              { icon: Instagram, href: "https://www.instagram.com/twinsundigital/" },
+              { icon: Youtube, href: "#" },
               ].map(({ icon: Icon, href }) => (
-                <a key={href} href={href} target="_blank" rel="noopener noreferrer" style={{
+                <a key={href} href={href} 
+                aria-label="Twinsun Digital Social Links"
+                target="_blank" rel="noopener noreferrer" style={{
                   width: 36, height: 36, border: "1px solid var(--color-border)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   color: "var(--color-text-soft)", textDecoration: "none", transition: "all 0.2s",
@@ -157,7 +160,7 @@ export default function Footer() {
             <div style={{ color: "var(--color-text-strong)", fontSize: 12, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", marginBottom: 24 }}>Contact</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {[{ icon: Phone, text: "+91 93611 87937\nWhatsApp: +91 80560 78068" },
-              { icon: Mail, text: "admin@twinsundigital.com" },
+              { icon: Mail, text: "info@twinsundigital.com" },
               { icon: Clock, text: "Mon – Sat\n8:00 AM – 5:00 PM" },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>

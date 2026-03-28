@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import Marquee from "../components/Marquee";
 import FloatingOfferButton from "../components/FloatingOfferButton";
 import ClaimOfferSection from "../components/ClaimOfferSection";
+import { Helmet } from "react-helmet";
 
 const WA = "https://wa.me/918056078068";
 
@@ -784,6 +785,13 @@ export default function Services() {
 
   return (
     <div style={{ background: "transparent", minHeight: "100vh" }}>
+      <Helmet>
+        <title>Our Services - Twinsun Digital</title>
+        <meta
+          name="description"
+          content="Explore our comprehensive range of web services tailored to your business needs. From website design to custom web applications, we have you covered."
+        />
+      </Helmet>
       <Hero />
       <Marquee items={items} />
       <ClaimOfferSection sectionRef={offerRef} />

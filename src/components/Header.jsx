@@ -77,6 +77,7 @@ export default function Header() {
             <img
               src={theme === "light" ? "/logo-black.svg" : "/logo-white.svg"}
               className="h-7"
+              alt="Twinsun Digital Logo"
             />
             <span style={{
               fontSize: 9,
@@ -192,6 +193,7 @@ export default function Header() {
                     <img
                       src={theme === "light" ? "/logo-black.svg" : "/logo-white.svg"}
                       style={{ height: 40 }}
+                      alt="Twinsun Digital Logo"
                     />
                     <span style={{
                       fontSize: 9,

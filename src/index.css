@@ -11,15 +11,15 @@
   );
 
   --color-surface: rgba(255, 255, 255, 0.75);
-  --color-surface-strong: #ffffff;
-  --color-surface-alt: #f3f8ff;
+  --color-surface-strong: #f0f0f0; /* Adjusted for better contrast */
+  --color-surface-alt: #e0e7ff; /* Adjusted for better contrast */
   --color-surface-muted: #eaf2ff;
 
   --color-text: #0f172a;
   --color-text-strong: #020617;
   --color-text-muted: rgba(15, 23, 42, 0.72);
-  --color-text-soft: rgba(15, 23, 42, 0.55);
-  --color-text-faint: rgba(15, 23, 42, 0.35);
+  --color-text-soft: rgba(15, 23, 42, 0.75); /* Increased opacity for better contrast */
+  --color-text-faint: rgba(15, 23, 42, 0.75); /* Adjusted for better contrast */
 
   --color-border: rgba(59, 130, 246, 0.18);
   --color-border-strong: rgba(37, 99, 235, 0.35);
@@ -54,8 +54,8 @@ html[data-theme="dark"] {
   --color-text: #e6f0ff;
   --color-text-strong: #ffffff;
   --color-text-muted: rgba(230, 240, 255, 0.72);
-  --color-text-soft: rgba(230, 240, 255, 0.55);
-  --color-text-faint: rgba(230, 240, 255, 0.35);
+  --color-text-soft: rgba(230, 240, 255, 0.75); /* Dark theme adjustment */
+  --color-text-faint: rgba(230, 240, 255, 0.75); /* Adjusted for better contrast */
 
   --color-border: rgba(96, 165, 250, 0.22);
   --color-border-strong: rgba(59, 130, 246, 0.45);
