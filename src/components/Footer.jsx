@@ -66,13 +66,24 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-              <Link to="/">
-                <img
-                  src={theme === "light" ? "/logo-black.svg" : "/logo-white.svg"}
-                  className="h-7"
-
-                />
-              </Link>
+              <Link to="/" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textDecoration: "none", gap: 3 }}>
+            <img
+              src={theme === "light" ? "/logo-black.svg" : "/logo-white.svg"}
+              className="h-7"
+            />
+            <span style={{
+              fontSize: 9,
+              fontWeight: 600,
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              background: "linear-gradient(90deg, var(--color-accent), var(--color-accent-strong))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              lineHeight: 1,
+              paddingLeft: 1,
+            }}>Digital Solutions</span>
+          </Link>
             </div>
             <p style={{ color: "var(--color-text-soft)", fontSize: 13, lineHeight: 1.8, maxWidth: 280, fontWeight: 300, marginBottom: 24 }}>
               We build conversion-focused websites and growth systems that turn visitors into clients — trusted by businesses worldwide.

@@ -65,12 +65,24 @@ export default function Header() {
     >
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 20px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         {/* Logo */}
-        <div className="cursor-pointer" >
-          <Link to="/">
+        <div className="cursor-pointer">
+          <Link to="/" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textDecoration: "none", gap: 3 }}>
             <img
               src={theme === "light" ? "/logo-black.svg" : "/logo-white.svg"}
               className="h-7"
             />
+            <span style={{
+              fontSize: 9,
+              fontWeight: 600,
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              background: "linear-gradient(90deg, var(--color-accent), var(--color-accent-strong))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              lineHeight: 1,
+              paddingLeft: 1,
+            }}>Digital Solutions</span>
           </Link>
         </div>
 
