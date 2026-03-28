@@ -451,7 +451,19 @@ function WhyUs() {
           ))}
         </div>
       </div>
-      <style>{`@media(max-width:900px){.whyus-grid{grid-template-columns:repeat(2,1fr)!important;}}@media(max-width:600px){.whyus-grid{grid-template-columns:1fr!important;}}`}</style>
+      <style>{`
+        @media (max-width: 900px) {
+          section > div > div:last-child {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+
+        @media (max-width: 600px) {
+          section > div > div:last-child {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -625,22 +637,85 @@ function StatsStrip() {
   ];
 
   return (
-    <section style={{ background: "var(--color-bg)", borderTop: "1px solid var(--color-border-soft)", borderBottom: "1px solid var(--color-border-soft)", fontFamily: "'DM Sans',sans-serif" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 1, background: "var(--color-border-soft)" }}>
+    <section
+      style={{
+        background: "var(--color-bg)",
+        borderTop: "1px solid var(--color-border-soft)",
+        borderBottom: "1px solid var(--color-border-soft)",
+        fontFamily: "'DM Sans',sans-serif",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1280,
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 1,
+          background: "var(--color-border-soft)",
+        }}
+      >
         {stats.map(({ n, l }) => (
-          <div key={n} style={{
-            background: "var(--color-bg)", padding: "48px 36px",
-            display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
-            transition: "background 0.2s",
-          }}
-            onMouseEnter={e => e.currentTarget.style.background = "var(--color-surface)"}
-            onMouseLeave={e => e.currentTarget.style.background = "var(--color-bg)"}
+          <div
+            key={n}
+            style={{
+              background: "var(--color-bg)",
+              padding: "48px 36px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 8,
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.background = "var(--color-surface)")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.background = "var(--color-bg)")
+            }
           >
-            <div style={{ fontFamily: "'Plus Jakarta Sans',serif", fontSize: 44, fontWeight: 700, color: "var(--color-text-strong)", lineHeight: 1 }}>{n}</div>
-            <div style={{ color: "var(--color-text-faint)", fontSize: 12, marginTop: 4, lineHeight: 1.5, whiteSpace: "pre-line", fontWeight: 400, textAlign: "center" }}>{l}</div>
+            <div
+              style={{
+                fontFamily: "'Plus Jakarta Sans',serif",
+                fontSize: 44,
+                fontWeight: 700,
+                color: "var(--color-text-strong)",
+                lineHeight: 1,
+              }}
+            >
+              {n}
+            </div>
+            <div
+              style={{
+                color: "var(--color-text-faint)",
+                fontSize: 12,
+                marginTop: 4,
+                lineHeight: 1.5,
+                whiteSpace: "pre-line",
+                fontWeight: 400,
+                textAlign: "center",
+              }}
+            >
+              {l}
+            </div>
           </div>
         ))}
       </div>
+      <style>
+        {`
+          @media (max-width: 768px) {
+            section > div {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            section > div {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 }

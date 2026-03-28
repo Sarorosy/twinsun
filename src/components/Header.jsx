@@ -1,4 +1,4 @@
-import { ArrowRight, Menu, Zap, X, Sun, Moon } from "lucide-react";
+import { ArrowRight, Menu, X, Sun, Moon } from "lucide-react";
 import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,6 +27,8 @@ export default function Header() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   });
   const WA = "https://wa.me/918056078068";
+  const youtubeUrl = "https://www.youtube.com/channel/UCCtbaoyWA3y9GB2WFcYDXEQ";
+  const instagramUrl = "https://www.instagram.com/the_stratedge/";
 
   const { open: openCall } = useContext(CallModalContext);
 
@@ -46,7 +48,12 @@ export default function Header() {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
-  const nav = ["Home","About", "Services", "Contact Us"];
+  const navItems = [
+    { label: "Home", to: "/" },
+    { label: "About", to: "/about" },
+    { label: "Services", to: "/services" },
+    { label: "Contact Us", to: "/contact-us" },
+  ];
   const headerTextColor = scrolled ? "var(--color-text-strong)" : "var(--color-text)";
   const headerLinkColor = scrolled ? "var(--color-text-muted)" : "var(--color-text-soft)";
 
@@ -88,15 +95,15 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav style={{ display: "flex", gap: 24, alignItems: "center" }} className="desktop-nav">
-          {nav.map(n => (
-            <Link key={n} to={`/${n == "Home" ? "" : n == "Contact Us" ? "contact-us" : n.toLowerCase()}`} style={{
+          {navItems.map(({ label, to }) => (
+            <Link key={label} to={to} style={{
               color: headerLinkColor, fontSize: 13, fontWeight: 500,
               letterSpacing: 1.5, textTransform: "uppercase", textDecoration: "none",
               transition: "color 0.2s",
             }}
               onMouseEnter={e => e.target.style.color = "var(--color-accent)"}
               onMouseLeave={e => e.target.style.color = headerLinkColor}
-            >{n}</Link>
+            >{label}</Link>
           ))}
         </nav>
 
@@ -150,19 +157,7 @@ export default function Header() {
         {open && (
           <>
             {/* Overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setOpen(false)}
-              style={{
-                position: "fixed",
-                inset: 0,
-                background: "rgba(0,0,0,0.4)",
-                backdropFilter: "blur(6px)",
-                zIndex: 99,
-              }}
-            />
+            
 
             {/* Drawer */}
             <motion.div
@@ -177,7 +172,7 @@ export default function Header() {
                 height: "100vh",
                 width: "85%",
                 maxWidth: 360,
-                background: "var(--color-surface)",
+                background: "var(--color-surface-strong)",
                 zIndex: 100,
                 padding: "24px",
                 display: "flex",
@@ -188,17 +183,59 @@ export default function Header() {
             >
               {/* Top */}
               <div>
-                <div style={{ marginBottom: 30 }}>
-                  <img src="/logo.png" style={{
-                    height: 40, filter: theme === "light"
-                      ? "invert(1) brightness(0.2)"
-                      : "none"
-                  }} />
+                <div style={{ marginBottom: 30 }} className="w-full flex items-center justify-between">
+                  <Link
+                    to="/"
+                    onClick={() => setOpen(false)}
+                    style={{ display: "inline-flex", flexDirection: "column", textDecoration: "none", gap: 3 }}
+                  >
+                    <img
+                      src={theme === "light" ? "/logo-black.svg" : "/logo-white.svg"}
+                      style={{ height: 40 }}
+                    />
+                    <span style={{
+                      fontSize: 9,
+                      fontWeight: 600,
+                      letterSpacing: "0.25em",
+                      textTransform: "uppercase",
+                      background: "linear-gradient(90deg, var(--color-accent), var(--color-accent-strong))",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                      lineHeight: 1,
+                      paddingLeft: 1,
+                    }}>Digital Solutions</span>
+                  </Link>
+                  <button
+                    type="button"
+                    aria-label="Close menu"
+                    className="ml-5"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                    style={{
+                      width: 42,
+                      height: 42,
+                      borderRadius: 999,
+                      border: "1px solid var(--color-border)",
+                      background: "linear-gradient(180deg, var(--color-surface), var(--color-surface-alt))",
+                      color: "var(--color-text-strong)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      boxShadow: "0 10px 24px rgba(0,0,0,0.08)",
+                      transition: "transform 0.2s ease, border-color 0.2s ease, background 0.2s ease",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <X size={18} />
+                  </button>
                 </div>
 
-                {nav.map((n, i) => (
+                {navItems.map(({ label, to }, i) => (
                   <motion.div
-                    key={n}
+                    key={label}
                     initial={{ opacity: 0, x: 40 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.08 }}
@@ -208,7 +245,7 @@ export default function Header() {
                     }}
                   >
                     <Link
-                      to={`/${n === "Contact" ? "contact-us" : n.toLowerCase()}`}
+                      to={to}
                       onClick={() => setOpen(false)}
                       style={{
                         fontSize: 16,
@@ -218,7 +255,7 @@ export default function Header() {
                         letterSpacing: 1,
                       }}
                     >
-                      {n}
+                      {label}
                     </Link>
                   </motion.div>
                 ))}
@@ -229,7 +266,10 @@ export default function Header() {
                 {/* CTA */}
                 <button
                   type="button"
-                  onClick={() => openCall()}
+                  onClick={() => {
+                    setOpen(false);
+                    openCall();
+                  }}
                   style={{
                     display: "block",
                     textAlign: "center",
@@ -252,13 +292,25 @@ export default function Header() {
 
                 {/* Social + Contact */}
                 <div style={{ fontSize: 13, color: "var(--color-text-muted)" }}>
-                  <p style={{ marginBottom: 6 }}>📧 your@email.com</p>
-                  <p style={{ marginBottom: 6 }}>📱 +91 93611 87937</p>
+                  <a
+                    href="tel:+919361187937"
+                    style={{ display: "block", marginBottom: 6, textDecoration: "none", color: "inherit" }}
+                  >
+                    📱 +91 93611 87937
+                  </a>
+                  <a
+                    href={WA}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ display: "block", marginBottom: 6, textDecoration: "none", color: "inherit" }}
+                  >
+                    WhatsApp Chat
+                  </a>
 
                   <div style={{ display: "flex", gap: 12, marginTop: 10 }}>
-                    <a href="#" style={{ textDecoration: "none" }}>Instagram</a>
-                    <a href="#" style={{ textDecoration: "none" }}>LinkedIn</a>
-                    <a href="#" style={{ textDecoration: "none" }}>Twitter</a>
+                    <a href={instagramUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "var(--color-text-strong)" }}>Instagram</a>
+                    <a href={WA} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "var(--color-text-strong)" }}>WhatsApp</a>
+                    <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "var(--color-text-strong)" }}>YouTube</a>
                   </div>
                 </div>
               </div>

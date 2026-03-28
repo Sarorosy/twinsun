@@ -32,7 +32,7 @@ function useGoogleFonts() {
 ═══════════════════════════════════════════════ */
 function Hero() {
   return (
-    <section style={{
+    <section className="about-hero" style={{
       background: "var(--color-bg)",
       color: "var(--color-text)",
       minHeight: "60vh",
@@ -62,9 +62,9 @@ function Hero() {
         width: 1, background: "linear-gradient(to bottom,transparent,rgba(139,92,246,0.25),transparent)",
       }} />
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "80px 40px 80px", width: "100%", position: "relative", zIndex: 2 }}>
+      <div className="about-container about-hero-inner" style={{ maxWidth: 1280, margin: "0 auto", padding: "80px 40px 80px", width: "100%", position: "relative", zIndex: 2 }}>
         {/* Breadcrumb */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 32, color: "var(--color-text-faint)", fontSize: 12, letterSpacing: 1 }}>
+        <div className="about-breadcrumb" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 32, color: "var(--color-text-faint)", fontSize: 12, letterSpacing: 1 }}>
           <span>Home</span>
           <span style={{ color: "var(--color-accent)" }}>›</span>
           <span style={{ color: "var(--color-accent)" }}>About Us</span>
@@ -81,7 +81,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 style={{
+        <h1 className="about-hero-title" style={{
           fontFamily: "'Plus Jakarta Sans',serif",
           fontSize: "clamp(42px,6vw,72px)",
           fontWeight: 900, color: "var(--color-text-strong)",
@@ -98,8 +98,6 @@ function Hero() {
           Passionate Marketers. Proven Strategists. <span style={{ color: "var(--color-accent)", fontWeight: 500 }}>Your Growth Partners.</span>
         </p>
       </div>
-
-      <style>{`@media(max-width:600px){h1{font-size:clamp(32px,8vw,52px)!important;}}`}</style>
     </section>
   );
 }
@@ -113,17 +111,17 @@ const items = ["Innovation", "Integrity", "Impact", "Inclusivity", "Excellence",
 /* ═══════════════════════════════════════════════
    OUR STORY
 ═══════════════════════════════════════════════ */
-function OurStory() {
+function OurStory({ onOpenCall }) {
   return (
-    <section style={{ background: "var(--color-surface-alt)", padding: "100px 0", fontFamily: "'DM Sans',sans-serif" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+    <section id="about-story" style={{ background: "var(--color-surface-alt)", padding: "40px 0", fontFamily: "'DM Sans',sans-serif" }}>
+      <div className="about-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
 
         <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 70 }}>
           <div style={{ width: 40, height: 1, background: "var(--color-accent)" }} />
           <span style={{ color: "var(--color-accent)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", fontWeight: 600 }}>Our Story</span>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 100, alignItems: "start" }}>
+        <div className="about-story-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 100, alignItems: "start" }}>
           {/* Left */}
           <div>
             <h2 style={{
@@ -150,7 +148,7 @@ function OurStory() {
               </p>
             </div>
 
-            <button type="button" onClick={open} style={{
+            <button type="button" onClick={onOpenCall} style={{
               display: "inline-flex", alignItems: "center", gap: 10,
               color: "var(--color-accent)", textDecoration: "none", fontSize: 12,
               fontWeight: 600, letterSpacing: 2, textTransform: "uppercase",
@@ -173,7 +171,7 @@ function OurStory() {
               <div style={{ color: "var(--color-accent)", fontSize: 11, letterSpacing: 3, textTransform: "uppercase", fontWeight: 600, marginBottom: 28 }}>
                 At a Glance
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "var(--color-accent-soft)" }}>
+              <div className="about-story-stats-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 1, background: "var(--color-accent-soft)" }}>
                 {[
                   { n: "50+", l: "Projects\nCompleted", icon: Award },
                   { n: "30+", l: "Satisfied\nClients", icon: Users },
@@ -193,7 +191,7 @@ function OurStory() {
                   </div>
                 ))}
               </div>
-              <div style={{ marginTop: 28, paddingTop: 20, borderTop: "1px solid var(--color-accent-soft)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div className="about-story-trust-row" style={{ marginTop: 28, paddingTop: 20, borderTop: "1px solid var(--color-accent-soft)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <span style={{ color: "var(--color-text-faint)", fontSize: 12 }}>Trusted by businesses worldwide</span>
                 <div style={{ display: "flex", gap: 0 }}>
                   {[...Array(5)].map((_, i) => <Star key={i} size={12} fill="var(--color-accent)" color="var(--color-accent)" />)}
@@ -214,7 +212,6 @@ function OurStory() {
           </div>
         </div>
       </div>
-      <style>{`@media(max-width:900px){#about-story>div>div{grid-template-columns:1fr!important;gap:48px!important;}}`}</style>
     </section>
   );
 }
@@ -224,7 +221,7 @@ function OurStory() {
 ═══════════════════════════════════════════════ */
 function MissionVision() {
   return (
-    <section style={{ background: "var(--color-bg)", padding: "100px 0", fontFamily: "'DM Sans',sans-serif", position: "relative", overflow: "hidden" }}>
+    <section style={{ background: "var(--color-bg)", padding: "40px 0", fontFamily: "'DM Sans',sans-serif", position: "relative", overflow: "hidden" }}>
       {/* BG watermark */}
       <div style={{
         position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
@@ -233,14 +230,14 @@ function MissionVision() {
         userSelect: "none", pointerEvents: "none", opacity: 0.03,
       }}>Twinsun Digital</div>
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px", position: "relative", zIndex: 2 }}>
+      <div className="about-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px", position: "relative", zIndex: 2 }}>
 
         <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 70 }}>
           <div style={{ width: 40, height: 1, background: "var(--color-accent)" }} />
           <span style={{ color: "var(--color-accent)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", fontWeight: 600 }}>Purpose & Direction</span>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}>
+        <div className="mv-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}>
           {[
             {
               label: "Our Mission",
@@ -284,7 +281,6 @@ function MissionVision() {
           ))}
         </div>
       </div>
-      <style>{`@media(max-width:900px){.mv-grid{grid-template-columns:1fr!important;}}`}</style>
     </section>
   );
 }
@@ -315,8 +311,8 @@ function CoreValues() {
   ];
 
   return (
-    <section style={{ background: "var(--color-surface-alt)", padding: "100px 0", fontFamily: "'DM Sans',sans-serif" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+    <section style={{ background: "var(--color-surface-alt)", padding: "40px 0", fontFamily: "'DM Sans',sans-serif" }}>
+      <div className="about-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
 
         <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 24 }}>
           <div style={{ width: 40, height: 1, background: "var(--color-accent)" }} />
@@ -332,7 +328,7 @@ function CoreValues() {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 2 }}>
+        <div className="values-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 2 }}>
           {values.map(({ icon: Icon, num, label, desc }) => (
             <div
               key={num}
@@ -373,7 +369,6 @@ function CoreValues() {
           ))}
         </div>
       </div>
-      <style>{`@media(max-width:900px){.values-grid{grid-template-columns:repeat(2,1fr)!important;}}@media(max-width:600px){.values-grid{grid-template-columns:1fr!important;}}`}</style>
     </section>
   );
 }
@@ -392,8 +387,8 @@ function Milestones() {
   ];
 
   return (
-    <section style={{ background: "var(--color-bg)", padding: "100px 0", fontFamily: "'DM Sans',sans-serif" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+    <section style={{ background: "var(--color-bg)", padding: "40px 0", fontFamily: "'DM Sans',sans-serif" }}>
+      <div className="about-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
 
         <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 24 }}>
           <div style={{ width: 40, height: 1, background: "var(--color-accent)" }} />
@@ -405,16 +400,16 @@ function Milestones() {
         </h2>
 
         {/* Timeline */}
-        <div style={{ position: "relative" }}>
+        <div className="milestones-timeline" style={{ position: "relative" }}>
           {/* Vertical spine */}
-          <div style={{
+          <div className="timeline-spine" style={{
             position: "absolute", left: 100, top: 0, bottom: 0, width: 1,
             background: "linear-gradient(to bottom,transparent,var(--color-border),transparent)",
           }} />
 
           <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
             {timeline.map(({ year, title, desc }, i) => (
-              <div key={year} style={{
+              <div key={year} className="timeline-row" style={{
                 display: "grid", gridTemplateColumns: "100px 60px 1fr", alignItems: "center", gap: 0,
                 background: "var(--color-surface-alt)", border: "1px solid var(--color-border-soft)",
                 padding: "32px 36px 32px 0",
@@ -424,17 +419,17 @@ function Milestones() {
                 onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--color-border-soft)"; e.currentTarget.style.background = "var(--color-surface-alt)"; }}
               >
                 {/* Year */}
-                <div style={{ paddingLeft: 0, textAlign: "right", paddingRight: 24 }}>
+                <div className="timeline-year" style={{ paddingLeft: 0, textAlign: "right", paddingRight: 24 }}>
                   <span style={{ fontFamily: "'Plus Jakarta Sans',serif", fontSize: 20, fontWeight: 700, color: "var(--color-accent)" }}>{year}</span>
                 </div>
 
                 {/* Node */}
-                <div style={{ display: "flex", justifyContent: "center", position: "relative" }}>
+                <div className="timeline-node-wrap" style={{ display: "flex", justifyContent: "center", position: "relative" }}>
                   <div style={{ width: 12, height: 12, background: "var(--color-accent)", border: "3px solid var(--color-bg)" }} />
                 </div>
 
                 {/* Content */}
-                <div>
+                <div className="timeline-content">
                   <div style={{ fontFamily: "'Plus Jakarta Sans',serif", fontSize: 18, fontWeight: 600, color: "var(--color-text-strong)", marginBottom: 6 }}>{title}</div>
                   <div style={{ color: "var(--color-text-faint)", fontSize: 14, lineHeight: 1.7, fontWeight: 300 }}>{desc}</div>
                 </div>
@@ -453,17 +448,17 @@ function Milestones() {
 /* ═══════════════════════════════════════════════
    FOUNDER SPOTLIGHT
 ═══════════════════════════════════════════════ */
-function FounderSpotlight() {
+function FounderSpotlight({ onOpenCall }) {
   return (
-    <section style={{ background: "var(--color-bg)", padding: "100px 0", fontFamily: "'DM Sans',sans-serif" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
+    <section style={{ background: "var(--color-bg)", padding: "40px 0", fontFamily: "'DM Sans',sans-serif" }}>
+      <div className="about-container" style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px" }}>
 
         <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 70 }}>
           <div style={{ width: 40, height: 1, background: "var(--color-accent)" }} />
           <span style={{ color: "var(--color-accent)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", fontWeight: 600 }}>About the Founder</span>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: 80, alignItems: "center" }}>
+        <div className="founder-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: 80, alignItems: "center" }}>
           {/* Left – founder card */}
           <div>
             <div style={{
@@ -522,7 +517,7 @@ function FounderSpotlight() {
               Saravanan specialises in SEO-friendly websites, mobile-friendly design, old website revamps, custom web applications, and complete website setup with domain and hosting support. His focus is on delivering reliable, scalable, and conversion-ready web solutions that help businesses grow online.
             </p>
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40 }}>
+            <div className="founder-skills-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40 }}>
               {[
                 "Website Development", "SEO-Friendly Websites", "Custom Web Applications", "Website Revamp & Hosting Support",
               ].map(skill => (
@@ -535,7 +530,7 @@ function FounderSpotlight() {
               ))}
             </div>
 
-            <button type="button" onClick={open} style={{
+            <button type="button" onClick={onOpenCall} style={{
               display: "inline-flex", alignItems: "center", gap: 10,
               background: "linear-gradient(135deg,var(--color-accent),var(--color-accent-strong))",
               color: "var(--color-accent-contrast)", padding: "14px 30px",
@@ -550,7 +545,6 @@ function FounderSpotlight() {
           </div>
         </div>
       </div>
-      <style>{`@media(max-width:900px){.founder-grid{grid-template-columns:1fr!important;gap:48px!important;}}`}</style>
     </section>
   );
 }
@@ -558,9 +552,9 @@ function FounderSpotlight() {
 /* ═══════════════════════════════════════════════
    FINAL CTA
 ═══════════════════════════════════════════════ */
-function CTA() {
+function CTA({ onOpenCall }) {
   return (
-    <section style={{ background: "var(--color-accent)", padding: "100px 0", fontFamily: "'DM Sans',sans-serif", position: "relative", overflow: "hidden" }}>
+    <section style={{ background: "var(--color-accent)", padding: "40px 0", fontFamily: "'DM Sans',sans-serif", position: "relative", overflow: "hidden" }}>
       {/* BG watermark */}
       <div style={{
         position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
@@ -569,7 +563,7 @@ function CTA() {
         userSelect: "none", pointerEvents: "none", opacity: 0.08,
       }}>GROW</div>
 
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 40px", textAlign: "center", position: "relative", zIndex: 2 }}>
+      <div className="about-container about-cta-shell" style={{ maxWidth: 900, margin: "0 auto", padding: "0 40px", textAlign: "center", position: "relative", zIndex: 2 }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginBottom: 24 }}>
           <div style={{ width: 40, height: 1, background: "var(--color-accent-contrast)" }} />
           <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", fontWeight: 600 }}>Let's Work Together</span>
@@ -582,8 +576,8 @@ function CTA() {
         <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 16, marginBottom: 44, fontWeight: 300 }}>
           Get a free consultation and let us build a digital strategy tailored for your business.
         </p>
-        <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-          <button type="button" onClick={open} style={{
+        <div className="about-cta-actions" style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
+          <button type="button" onClick={onOpenCall} style={{
             display: "inline-flex", alignItems: "center", gap: 10,
             background: "var(--color-accent-contrast)", color: "var(--color-accent)",
             padding: "16px 40px", fontSize: 12, fontWeight: 700,
@@ -621,15 +615,116 @@ export default function AboutUs() {
 
   return (
     <div style={{ background: "transparent", minHeight: "100vh" }}>
+      <style>{`
+        @media (max-width: 900px) {
+          .about-container {
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+          }
+
+          .about-story-grid,
+          .mv-grid,
+          .founder-grid {
+            grid-template-columns: 1fr !important;
+            gap: 48px !important;
+          }
+
+          .values-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+
+          .milestones-timeline .timeline-spine {
+            left: 28px !important;
+          }
+
+          .milestones-timeline .timeline-row {
+            grid-template-columns: 1fr !important;
+            gap: 14px !important;
+            padding: 28px 20px 28px 56px !important;
+            position: relative;
+          }
+
+          .milestones-timeline .timeline-year,
+          .milestones-timeline .timeline-content {
+            text-align: left !important;
+            padding-right: 0 !important;
+          }
+
+          .milestones-timeline .timeline-node-wrap {
+            position: absolute !important;
+            left: 22px !important;
+            top: 34px !important;
+            justify-content: flex-start !important;
+          }
+
+          .founder-skills-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .about-container,
+          .about-hero-inner,
+          .about-cta-shell {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+
+          .about-hero {
+            min-height: auto !important;
+          }
+
+          .about-breadcrumb {
+            flex-wrap: wrap;
+            row-gap: 6px;
+          }
+
+          .about-hero-title {
+            font-size: clamp(32px, 8vw, 52px) !important;
+          }
+
+          #about-story,
+          .mv-grid,
+          .values-grid,
+          .founder-grid,
+          .about-cta-shell {
+            width: 100%;
+          }
+
+          .about-story-stats-grid,
+          .founder-skills-grid,
+          .values-grid {
+            grid-template-columns: 1fr !important;
+          }
+
+          .about-story-trust-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 12px !important;
+          }
+
+          .about-cta-actions {
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+
+          .about-cta-actions > * {
+            justify-content: center !important;
+            width: 100% !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+        }
+      `}</style>
       <Hero />
       <Marquee items={items} />
       <ClaimOfferSection sectionRef={offerRef} />
-      <OurStory />
+      <OurStory onOpenCall={open} />
       <MissionVision />
       <CoreValues />
       <Milestones />
-      <FounderSpotlight />
-      <CTA />
+      <FounderSpotlight onOpenCall={open} />
+      <CTA onOpenCall={open} />
       <FloatingOfferButton
         targetRef={offerRef}
         price="₹15,000"

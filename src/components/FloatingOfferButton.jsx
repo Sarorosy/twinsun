@@ -36,7 +36,9 @@ export default function FloatingOfferButton({
   if (dismissed) return null;
 
   return (
-    <div style={{
+    <div
+      className="floating-offer-wrap"
+      style={{
       position: "fixed",
       bottom: 32,
       right: 28,
@@ -46,7 +48,8 @@ export default function FloatingOfferButton({
       alignItems: "flex-end",
       gap: 8,
       animation: "floatIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards",
-    }}>
+      }}
+    >
       <style>{`
         @keyframes floatIn {
           from { opacity: 0; transform: translateY(24px) scale(0.92); }
@@ -55,6 +58,28 @@ export default function FloatingOfferButton({
         @keyframes pulse-ring {
           0%   { transform: scale(1);   opacity: 0.6; }
           100% { transform: scale(1.9); opacity: 0; }
+        }
+        @media (max-width: 640px) {
+          .floating-offer-wrap {
+            right: 12px !important;
+            bottom: 14px !important;
+          }
+          .floating-offer-main {
+            min-width: 0 !important;
+            width: min(86vw, 220px) !important;
+            padding: 10px 14px !important;
+            gap: 2px !important;
+          }
+          .floating-offer-badge {
+            font-size: 8px !important;
+            letter-spacing: 1.5px !important;
+          }
+          .floating-offer-title {
+            font-size: 12px !important;
+          }
+          .floating-offer-subtitle {
+            font-size: 9px !important;
+          }
         }
       `}</style>
 
@@ -97,6 +122,7 @@ export default function FloatingOfferButton({
         }} />
 
         <button
+          className="floating-offer-main"
           type="button"
           onClick={scrollToOffer}
           style={{
@@ -125,14 +151,17 @@ export default function FloatingOfferButton({
         >
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <Zap size={13} fill="currentColor" />
-            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", opacity: 0.85 }}>
+            <span
+              className="floating-offer-badge"
+              style={{ fontSize: 9, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", opacity: 0.85 }}
+            >
               {badge}
             </span>
           </div>
-          <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: 0.2 }}>
+          <div className="floating-offer-title" style={{ fontSize: 14, fontWeight: 700, letterSpacing: 0.2 }}>
             {title} — {price}
           </div>
-          <div style={{ fontSize: 11, opacity: 0.75, fontWeight: 400 }}>
+          <div className="floating-offer-subtitle" style={{ fontSize: 11, opacity: 0.75, fontWeight: 400 }}>
             {subtitle}
           </div>
         </button>

@@ -65,7 +65,7 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
         onClick={handleOverlayClick}
       >
         <motion.div
-          className="w-full max-w-5xl max-h-[92vh] overflow-y-auto grid grid-cols-1 md:grid-cols-[1.05fr_1.2fr]"
+          className="relative w-full max-w-5xl max-h-[92vh] overflow-y-auto grid grid-cols-1 md:grid-cols-[1.05fr_1.2fr]"
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -30, opacity: 0 }}
@@ -77,8 +77,21 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
           }}
           onClick={(e) => e.stopPropagation()}
         >
+          <button
+            aria-label="Close"
+            onClick={handleClose}
+            className="absolute right-4 top-4 z-20 rounded-full p-2 transition"
+            style={{
+              background: 'var(--color-surface-alt)',
+              color: 'var(--color-text-strong)',
+              border: '1px solid var(--color-border)',
+            }}
+          >
+            <X size={18} />
+          </button>
+
           <div
-            className="flex flex-col justify-between p-7 md:p-8"
+            className="order-2 md:order-1 flex flex-col justify-between p-7 md:p-8"
             style={{
               color: 'var(--color-accent-contrast)',
               background: 'linear-gradient(165deg, var(--color-accent-strong) 0%, var(--color-accent) 60%, color-mix(in srgb, var(--color-accent) 80%, #60a5fa 20%) 100%)',
@@ -135,19 +148,7 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
             </div>
           </div>
 
-          <div className="relative p-6 md:p-8" style={{ background: 'var(--color-surface-strong)' }}>
-            <button
-              aria-label="Close"
-              onClick={handleClose}
-              className="absolute right-4 top-4 rounded-full p-2 transition"
-              style={{
-                background: 'var(--color-surface-alt)',
-                color: 'var(--color-text-strong)',
-                border: '1px solid var(--color-border)',
-              }}
-            >
-              <X size={18} />
-            </button>
+          <div className="order-1 md:order-2 p-6 pt-16 md:pt-8 md:p-8" style={{ background: 'var(--color-surface-strong)' }}>
 
             <h2 className="mb-2 text-2xl font-bold" style={{ color: 'var(--color-text-strong)' }}>Book a Call</h2>
             <p className="mb-6 text-sm" style={{ color: 'var(--color-text-muted)' }}>
