@@ -8,6 +8,7 @@ import Marquee from "../components/Marquee";
 import FloatingOfferButton from "../components/FloatingOfferButton";
 import ClaimOfferSection from "../components/ClaimOfferSection";
 import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
 
 const WA = "https://wa.me/918056078068";
 
@@ -113,9 +114,34 @@ function ContactSection() {
     { icon: Youtube, label: "YouTube", href: "#" },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
+
+    // Form validation
+    if (!form.name || !form.phone || !form.email || !form.message) {
+      toast.error("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://twinsundigital.com/twinsunback/api/contact_enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (response.ok) {
+        setSent(true);
+        toast.success("Message sent successfully!");
+      } else {
+        toast.error("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      toast.error("An error occurred. Please try again later.");
+    }
   };
 
   return (

@@ -30,6 +30,9 @@ export default function ClaimOfferSection({
   const [showForm, setShowForm] = useState(false);
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState(INITIAL_FORM);
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const [toast, setToast] = useState({ visible: false, type: 'info', message: '' });
 
   const handleOpenForm = () => {
     setShowForm(true);
@@ -40,11 +43,48 @@ export default function ClaimOfferSection({
     setForm((currentForm) => ({ ...currentForm, [key]: event.target.value }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Claim offer submission:", form);
-    setSent(true);
-    setForm(INITIAL_FORM);
+    const payload = { ...form };
+
+    const newErrors = {};
+    if (!payload.name || !payload.name.trim()) newErrors.name = 'Name is required';
+    if (!payload.email || !payload.email.trim()) newErrors.email = 'Email is required';
+    else if (!/^\S+@\S+\.\S+$/.test(payload.email)) newErrors.email = 'Enter a valid email';
+    if (!payload.phone || !payload.phone.trim()) newErrors.phone = 'Phone is required';
+    else if (!/^\+?\d{7,15}$/.test(payload.phone)) newErrors.phone = 'Enter a valid phone number';
+    if (!payload.service || !payload.service.trim()) newErrors.service = 'Please specify the service';
+    if (!payload.message || !payload.message.trim()) newErrors.message = 'Please provide project details';
+
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) {
+      setToast({ visible: true, type: 'error', message: 'Please fix the highlighted errors.' });
+      setTimeout(() => setToast((t) => ({ ...t, visible: false })), 3500);
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('https://twinsundigital.com/twinsunback/api/contact_enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const text = await res.text();
+      if (!res.ok) throw new Error(text || 'Server error');
+
+      setSent(true);
+      setForm(INITIAL_FORM);
+      setErrors({});
+      setToast({ visible: true, type: 'success', message: 'Request submitted — we will contact you shortly.' });
+      setTimeout(() => setToast((t) => ({ ...t, visible: false })), 3500);
+    } catch (err) {
+      console.error('Claim offer submit error:', err);
+      setToast({ visible: true, type: 'error', message: 'Failed to submit. Please try again later.' });
+      setTimeout(() => setToast((t) => ({ ...t, visible: false })), 3500);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -211,6 +251,9 @@ export default function ClaimOfferSection({
                             e.target.style.borderColor = "var(--color-border-soft)";
                           }}
                         />
+                        {errors[key] && (
+                          <div style={{ color: 'var(--color-red, #ef4444)', fontSize: 12, marginTop: 6 }}>{errors[key]}</div>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -245,11 +288,15 @@ export default function ClaimOfferSection({
                         e.target.style.borderColor = "var(--color-border-soft)";
                       }}
                     />
+                    {errors.message && (
+                      <div style={{ color: 'var(--color-red, #ef4444)', fontSize: 12, marginTop: 6 }}>{errors.message}</div>
+                    )}
                   </div>
 
                   <div style={{ display: "flex", justifyContent: "center", gap: 14, flexWrap: "wrap", marginTop: 8 }}>
                     <button
                       type="submit"
+                      disabled={submitting}
                       style={{
                         background: "linear-gradient(135deg,var(--color-accent),var(--color-accent-strong))",
                         color: "var(--color-accent-contrast)",
@@ -266,6 +313,7 @@ export default function ClaimOfferSection({
                         fontFamily: "'DM Sans',sans-serif",
                         transition: "transform 0.2s, box-shadow 0.2s",
                         boxShadow: "0 8px 32px rgba(139,92,246,0.35)",
+                        opacity: submitting ? 0.6 : 1,
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform = "translateY(-3px)";
@@ -276,7 +324,7 @@ export default function ClaimOfferSection({
                         e.currentTarget.style.boxShadow = "0 8px 32px rgba(139,92,246,0.35)";
                       }}
                     >
-                      Submit Request <Send size={15} />
+                      {submitting ? 'Submitting...' : 'Submit Request'} <Send size={15} />
                     </button>
 
                     <button
@@ -426,6 +474,22 @@ export default function ClaimOfferSection({
           )}
         </div>
       </div>
+      {toast.visible && (
+        <div style={{ position: 'fixed', right: 16, top: 16, zIndex: 99999 }}>
+          <div
+            style={{
+              background: toast.type === 'success' ? 'rgba(34,197,94,1)' : toast.type === 'error' ? 'rgba(239,68,68,1)' : 'rgba(55,65,81,1)',
+              color: '#fff',
+              padding: '10px 14px',
+              borderRadius: 8,
+              boxShadow: '0 8px 30px rgba(2,6,23,0.2)',
+              fontSize: 13,
+            }}
+          >
+            {toast.message}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

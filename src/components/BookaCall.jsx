@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Sparkles, X } from 'lucide-react';
 
@@ -15,6 +15,18 @@ const DEFAULT_FEATURES = [
 
 const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
   const overlayRef = useRef(null);
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: '',
+    message: '',
+    package: 'Growth Launch Package',
+    price: '15000',
+  });
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const [toast, setToast] = useState({ visible: false, type: 'info', message: '' });
 
   useEffect(() => {
     const onKey = (e) => {
@@ -43,9 +55,57 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target).entries());
-    console.log('Book a Call submission:', data);
-    // TODO: wire to API or state management
-    handleClose();
+    const payload = {
+      name: data.name?.trim(),
+      email: data.email?.trim(),
+      phone: data.phone?.trim(),
+      service: data.service,
+      message: data.message?.trim(),
+      package: data.package,
+      price: data.price,
+    };
+
+    const newErrors = {};
+    if (!payload.name) newErrors.name = 'Name is required';
+    if (!payload.email) newErrors.email = 'Email is required';
+    else if (!/^\S+@\S+\.\S+$/.test(payload.email)) newErrors.email = 'Enter a valid email';
+    if (!payload.phone) newErrors.phone = 'Phone is required';
+    else if (!/^\+?\d{7,15}$/.test(payload.phone)) newErrors.phone = 'Enter a valid phone number';
+    if (!payload.service) newErrors.service = 'Please select a service';
+    if (!payload.message) newErrors.message = 'Message is required';
+
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) {
+      setToast({ visible: true, type: 'error', message: 'Please fix the highlighted errors.' });
+      setTimeout(() => setToast((t) => ({ ...t, visible: false })), 3500);
+      return;
+    }
+
+    setSubmitting(true);
+    fetch('https://twinsundigital.com/twinsunback/api/contact_enquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then(async (res) => {
+        const text = await res.text();
+        if (!res.ok) throw new Error(text || 'Server error');
+        setToast({ visible: true, type: 'success', message: 'Request submitted — we will contact you shortly.' });
+        setTimeout(() => setToast((t) => ({ ...t, visible: false })), 3500);
+        // reset form and close after short delay
+        setForm({ name: '', email: '', phone: '', service: '', message: '', package: 'Growth Launch Package', price: '15000' });
+        setErrors({});
+        setTimeout(() => {
+          setSubmitting(false);
+          handleClose();
+        }, 700);
+      })
+      .catch((err) => {
+        console.error('Submit error:', err);
+        setSubmitting(false);
+        setToast({ visible: true, type: 'error', message: 'Failed to submit. Please try again later.' });
+        setTimeout(() => setToast((t) => ({ ...t, visible: false })), 3500);
+      });
   };
 
   if (!isOpen) return null;
@@ -156,15 +216,16 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
             </p>
 
             <form className="grid grid-cols-1 gap-4" onSubmit={handleSubmit}>
-              <input type="hidden" name="package" value="Growth Launch Package" />
-              <input type="hidden" name="price" value="15000" />
+              <input type="hidden" name="package" value={form.package} />
+              <input type="hidden" name="price" value={form.price} />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium" style={{ color: 'var(--color-text)' }}>Name</label>
                   <input
                     name="name"
-                    required
+                    value={form.name}
+                    onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                     className="mt-1 block w-full rounded-lg px-3 py-2.5 outline-none transition"
                     style={{
                       border: '1px solid var(--color-border)',
@@ -173,13 +234,15 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
                     }}
                     placeholder="Your name"
                   />
+                  {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium" style={{ color: 'var(--color-text)' }}>Email</label>
                   <input
                     name="email"
                     type="email"
-                    required
+                    value={form.email}
+                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                     className="mt-1 block w-full rounded-lg px-3 py-2.5 outline-none transition"
                     style={{
                       border: '1px solid var(--color-border)',
@@ -188,6 +251,7 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
                     }}
                     placeholder="you@company.com"
                   />
+                  {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
                 </div>
               </div>
 
@@ -197,7 +261,8 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
                   <input
                     name="phone"
                     type="tel"
-                    required
+                    value={form.phone}
+                    onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
                     className="mt-1 block w-full rounded-lg px-3 py-2.5 outline-none transition"
                     style={{
                       border: '1px solid var(--color-border)',
@@ -206,12 +271,15 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
                     }}
                     placeholder="+91 999999 9999"
                   />
+                  {errors.phone && <p className="mt-1 text-xs text-red-400">{errors.phone}</p>}
                 </div>
                 <div>
                   <label className="block text-sm font-medium" style={{ color: 'var(--color-text)' }}>Service Looking For</label>
                   <select
                     name="service"
                     required
+                    value={form.service}
+                    onChange={(e) => setForm((f) => ({ ...f, service: e.target.value }))}
                     className="mt-1 block w-full rounded-lg px-3 py-2.5 outline-none transition"
                     style={{
                       border: '1px solid var(--color-border)',
@@ -225,6 +293,7 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
                     <option value="digital-marketing">Digital Marketing</option>
                     <option value="other">Other</option>
                   </select>
+                  {errors.service && <p className="mt-1 text-xs text-red-400">{errors.service}</p>}
                 </div>
               </div>
 
@@ -234,6 +303,8 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
                   name="message"
                   required
                   rows="4"
+                  value={form.message}
+                  onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                   className="mt-1 block w-full rounded-lg px-3 py-2.5 outline-none transition"
                   style={{
                     border: '1px solid var(--color-border)',
@@ -242,19 +313,21 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
                   }}
                   placeholder="Tell us a bit about your project..."
                 ></textarea>
+                {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
               </div>
 
               <div>
                 <button
                   type="submit"
-                  className="w-full rounded-lg px-4 py-2.5 font-semibold transition"
+                  disabled={submitting}
+                  className="w-full rounded-lg px-4 py-2.5 font-semibold transition disabled:opacity-60"
                   style={{
                     background: 'linear-gradient(120deg, var(--color-accent-strong), var(--color-accent))',
                     color: 'var(--color-accent-contrast)',
                     boxShadow: '0 10px 30px color-mix(in srgb, var(--color-accent) 30%, transparent)',
                   }}
                 >
-                  Request a Call
+                  {submitting ? 'Submitting...' : 'Request a Call'}
                 </button>
               </div>
             </form>
@@ -263,6 +336,17 @@ const BookaCall = ({ isOpen = false, onClose = () => {} }) => {
       </motion.div>
     )
 
+};
+
+// Simple in-component toast display
+const Toast = ({ toast }) => {
+  if (!toast?.visible) return null;
+  const bg = toast.type === 'success' ? 'bg-green-500' : toast.type === 'error' ? 'bg-red-500' : 'bg-gray-700';
+  return (
+    <div className={`fixed right-4 top-4 z-[99999] ${bg} text-white px-4 py-2 rounded-md shadow-lg`}>
+      <div className="text-sm">{toast.message}</div>
+    </div>
+  );
 };
 
 export default BookaCall;
